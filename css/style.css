@@ -26,13 +26,17 @@ html, body {
 }
 
 .poor-player-screen {
-    background: #eee;
+    background: #F8E1DD;
     height: 600px;
 }
 
 .rich-player-screen {
-    background: #666;
+    background: #c9c0fb;
     height: 600px;
+}
+
+.poor-player-screen img, .rich-player-screen img {
+    margin: 25px;
 }
 
 .player-screen {
