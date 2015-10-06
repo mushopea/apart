@@ -9,7 +9,7 @@
     var scoreRate = 0.0; // change on event
     // gold
     var gold = 0; // change every second
-    var goldRate = 0.0; // change on event
+    var goldRate = 1; // change on event
     // bubbles
     var bubbleVisibilities = [false, false, false, false]; // change every second
 // boosts
@@ -40,6 +40,40 @@
     var scoresForGrades = [350, 450, 500, 550, 600, 650, 700, 1000, 999999];
 
 
+    function updateItemDisplay() {
+        for (var i = 0; i < upgradeNames.length; i++) {
+            if (gold >= upgradeCosts[i]) {
+                $("#upgrade-" + i).removeClass("unbuyable");
+            } else {
+                $("#upgrade-" + i).addClass("unbuyable");
+            }
+        }
+
+        for (var i = 0; i < boostNames.length; i++) {
+            if (gold >= boostCosts[i]) {
+                $("#boost-" + i).removeClass("unbuyable");
+            } else {
+                $("#boost-" + i).addClass("unbuyable");
+            }
+        }
+    }
+
+    function updateStatsDisplay() {
+        document.querySelector('#poor-player-gold').textContent = gold;
+
+    }
+
+    function updateDisplay() {
+        updateItemDisplay();
+        updateStatsDisplay();
+    }
+
+    function update() {
+        gold += goldRate;
+        score += scoreRate;
+
+        updateDisplay();
+    }
 
     function startTimer(duration, display) {
         var start = Date.now(),
@@ -60,6 +94,8 @@
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
             display.textContent = minutes + ":" + seconds;
+
+            update();
 
             // red if running out of time
             if (diff < 10) {
