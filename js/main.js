@@ -109,13 +109,20 @@
         document.getElementById("item-screen").innerHTML = html;
     }
 
-
-    window.onload = function () {
+    function startGame() {
         // DOM
         var timeDisplay = document.querySelector('#time');
+        startTimer(levelDuration, timeDisplay);
+    }
+
+
+    window.onload = function () {
 
         // Start functions
-        startTimer(levelDuration, timeDisplay);
         populateUpgradesAndBoosts();
+
+        $('#time').click(function() {
+            startGame();
+        });
     };
 })();

@@ -31,6 +31,11 @@ html, body {
     color: darkslateblue;
 }
 
+#time:hover {
+    cursor: pointer;
+    color: darkcyan;
+}
+
 .time-screen.last-ten-seconds {
     color: darkred;
 }
