@@ -1,6 +1,6 @@
 (function() {
     // Game variables
-    var levelDuration = 60 * 2;
+    var levelDuration = 120;
     // score
     var score = 0; // change every second
     var grade = 'F9'; // change every second
@@ -44,6 +44,7 @@
             diff,
             minutes,
             seconds;
+
         function timer() {
             // get the number of seconds that have elapsed since
             // startTimer() was called
@@ -58,10 +59,16 @@
 
             display.textContent = minutes + ":" + seconds;
 
+            // red if running out of time
+            if (diff < 10) {
+                $('.time-screen').addClass('last-ten-seconds');
+            }
+
             if (diff <= 0) {
                 // add one second so that the count down starts at the full duration
                 // example 05:00 not 04:59
                 start = Date.now() + 1000;
+                $('.time-screen').removeClass('last-ten-seconds');
             }
 
         };

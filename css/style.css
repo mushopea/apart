@@ -25,6 +25,16 @@ html, body {
     vertical-align: middle;
 }
 
+.time-screen {
+    font-size: 2em;
+    font-weight: 700;
+    color: darkslateblue;
+}
+
+.time-screen.last-ten-seconds {
+    color: darkred;
+}
+
 .poor-player-screen {
     background: #F8E1DD;
     height: 600px;
@@ -37,10 +47,6 @@ html, body {
 
 .poor-player-screen img, .rich-player-screen img {
     margin: 25px;
-}
-
-.player-screen {
-
 }
 
 .item-screen {
