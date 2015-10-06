@@ -40,18 +40,57 @@ html, body {
     color: darkred;
 }
 
-.poor-player-screen {
-    background: #F8E1DD;
-    height: 600px;
+.player-screen {
+    height: 500px;
 }
 
-.rich-player-screen {
-    background: #c9c0fb;
-    height: 600px;
-}
-
-.poor-player-screen img, .rich-player-screen img {
+.player-screen img {
+    height: 80%;
     margin: 25px;
+}
+
+.poor {
+    background: #F8E1DD;
+    height: 100%;
+}
+
+.rich {
+    background: #c9c0fb;
+    height: 100%;
+}
+
+.stat-screen {
+    height: 108px;
+}
+
+.stats {
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 10px;
+    text-align: center;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.stat-circle {
+    width: 70px;
+    height: 70px;
+    background: black;
+    font-weight: 700;
+    font-size: 1.7em;
+    color: white;
+    border-radius: 50%;
+    display: table;
+    margin: 0 auto;
+}
+
+.stat-text {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.stat-description {
+    display: block;
 }
 
 .item-screen {

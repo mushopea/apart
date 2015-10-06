@@ -27,7 +27,7 @@
     var maxUpgradePurchases = 99;
 
     // Constant Variables
-    var upgradeNames = ['Stress Balloons', 'Stationery', 'Practise Papers', 'Guidebook', 'Tuition'];
+    var upgradeNames = ['Stress Balloons', 'Stationery', 'Practice Papers', 'Guidebook', 'Tuition'];
     var upgradeCosts = [5, 10, 15, 25, 40];
     var upgradeRates = [0.1, 0.2, 0.5, 1.0, 2.0];
 
