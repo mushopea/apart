@@ -40,6 +40,16 @@
     var scoresForGrades = [350, 450, 500, 550, 600, 650, 700, 1000, 999999];
 
 
+    function buyUpgrade(itemNumber) {
+        console.log("Buying upgrade " + itemNumber);
+    }
+
+    function buyBoost(itemNumber) {
+        console.log("Buying boost " + itemNumber);
+    }
+
+    // The following function greys out the items the player
+    // cannot afford at the moment.
     function updateItemDisplay() {
         for (var i = 0; i < upgradeNames.length; i++) {
             if (gold >= upgradeCosts[i]) {
@@ -60,9 +70,11 @@
 
     function updateStatsDisplay() {
         document.querySelector('#poor-player-gold').textContent = gold;
-
+        document.querySelector('#poor-player-score').textContent = score;
+        document.querySelector('#poor-player-rate').textContent = scoreRate;
     }
 
+    // Refreshes the entire display every second
     function updateDisplay() {
         updateItemDisplay();
         updateStatsDisplay();
@@ -154,11 +166,29 @@
 
     window.onload = function () {
 
-        // Start functions
+        // Initialization
         populateUpgradesAndBoosts();
 
+        // Start game when click 'Start'
         $('#time').click(function() {
             startGame();
+        });
+
+        // Fire events when an item is clicked
+        // To buy an item
+        $('.item-cell').bind('click', function() {
+            var itemID = String($(this).attr('id'));
+            var itemNumber = itemID.charAt(itemID.length-1);
+
+            if (itemID.charAt(0) == 'b') {
+                // item is a boost
+                buyBoost(itemNumber);
+
+            } else if (itemID.charAt(0) == 'u') {
+                // item is an upgrade
+                buyUpgrade(itemNumber);
+            }
+
         });
     };
 })();
