@@ -1,0 +1,58 @@
+html, body {
+    height: 100%;
+}
+
+/* The ghost, nudged to maintain perfect centering */
+.main-container:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+.main-container {
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.main-screen {
+    width: 1200px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.poor-player-screen {
+    background: #eee;
+    height: 600px;
+}
+
+.rich-player-screen {
+    background: #666;
+    height: 600px;
+}
+
+.player-screen {
+
+}
+
+.item-screen {
+    text-align: center;
+}
+
+.item-cell {
+    width: 10%;
+    float: left;
+    text-align: center;
+    padding: 15px 0;
+    margin: 0;
+}
+
+.item-cell:nth-child(odd) {
+    background: lightpink;
+}
+.item-cell:nth-child(even) {
+    background: gold;
+}
