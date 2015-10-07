@@ -38,6 +38,51 @@
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
     var scoresForGrades = [350, 450, 500, 550, 600, 650, 700, 1000, 999999];
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Add functions
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    function addScoreRate(value) {
+        scoreRate += value;
+        if (scoreRate > maxScoreRate) { scoreRate = maxScoreRate; }
+    }
+
+    function deductGold(value) {
+        if (gold >= value) {
+            gold -= value;
+        }
+    }
+
+    function addGold(value) {
+        if (gold > maxGold) {
+            gold = maxGold;
+        } else {
+            gold += value;
+        }
+    }
+
+    function addScore(value) {
+        score += value;
+        if (score > maxScore) { score = maxScore; }
+    }
+
+    function addUpgrade(upgradeNumber) {
+        if(upgradeQuantities[upgradeNumber] < maxUpgradePurchases) {
+            upgradeQuantities[upgradeNumber]++;
+        }
+        // update the display of quantity
+        var upgradeDOM = String('#upgrade-' + upgradeNumber);
+        $(upgradeDOM).find(".item-qty").html('Qty: ' + String(upgradeQuantities[upgradeNumber]));
+    }
+
+    function addBoost(boostNumber) {
+
+    }
+
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Buy functions
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     function buyUpgrade(itemNumber) {
         console.log("Buying upgrade " + itemNumber);
@@ -45,15 +90,11 @@
         // if the player has enough gold
         if (gold >= upgradeCosts[itemNumber]) {
             // buy the upgrade increase the quantity
-            upgradeQuantities[itemNumber]++;
-            // update the display of quantity
-            var upgradeDOM = String('#upgrade-' + itemNumber);
-            $(upgradeDOM).find(".item-qty").html('Qty: ' + String(upgradeQuantities[itemNumber]));
+            addUpgrade(itemNumber);
             // deduct gold
-            gold -= upgradeCosts[itemNumber];
+            deductGold(upgradeCosts[itemNumber]);
             // apply the effect of the upgrade (increase the rate)
-            scoreRate += upgradeRates[itemNumber];
-            if (scoreRate > maxScoreRate) { scoreRate = maxScoreRate; }
+            addScoreRate(upgradeRates[itemNumber]);
         }
 
     }
@@ -61,6 +102,11 @@
     function buyBoost(itemNumber) {
         console.log("Buying boost " + itemNumber);
     }
+
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Update functions
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     // The following function greys out the items the player
     // cannot afford at the moment.
@@ -85,7 +131,7 @@
     function updateStatsDisplay() {
         document.querySelector('#poor-player-gold').textContent = gold;
         document.querySelector('#poor-player-score').textContent = Math.round( score * 10 ) / 10;
-        document.querySelector('#poor-player-rate').textContent = '+' + scoreRate;
+        document.querySelector('#poor-player-rate').textContent = '+' + Math.round( scoreRate * 10 ) / 10;
     }
 
     // Refreshes the entire display every second
@@ -95,11 +141,15 @@
     }
 
     function update() {
-        gold += goldRate;
-        score += scoreRate;
-
+        addGold(goldRate);
+        addScore(scoreRate);
         updateDisplay();
     }
+
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Timer
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     function startTimer(duration, display) {
         var start = Date.now(),
@@ -144,6 +194,11 @@
         timer();
         setInterval(timer, 1000);
     }
+
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Startup functions
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     function populateUpgradesAndBoosts() {
         var html = '';
