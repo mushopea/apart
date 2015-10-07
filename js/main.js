@@ -42,6 +42,14 @@
     // Add functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+    function deductScoreRate(value) {
+        if (scoreRate > value) {
+            scoreRate -= value;
+        } else {
+            scoreRate = 0;
+        }
+    }
+
     function addScoreRate(value) {
         scoreRate += value;
         if (scoreRate > maxScoreRate) { scoreRate = maxScoreRate; }
@@ -50,6 +58,8 @@
     function deductGold(value) {
         if (gold >= value) {
             gold -= value;
+        } else {
+            gold = 0;
         }
     }
 
@@ -75,8 +85,28 @@
         $(upgradeDOM).find(".item-qty").html('Qty: ' + String(upgradeQuantities[upgradeNumber]));
     }
 
-    function addBoost(boostNumber) {
 
+    function addBoost(boostNumber) {
+        deductBoost();
+        currentBoost = boostNumber;
+        currentBoostDuration = boostDurations[boostNumber];
+
+        // add the score rate
+        rate = boostRates[boostNumber];
+        addScoreRate(rate);
+    }
+
+    function deductBoost() {
+        if (currentBoost !== null) {
+            deductScoreRate(boostRates[currentBoost]);
+            currentBoost = null;
+
+            // update DOM, clear the countdown
+            for (var i = 0; i < boostNames.length; i++) {
+                var upgradeDOM = String('#boost-' + i);
+                $(upgradeDOM).find(".item-active-boost").html('<br>');
+            }
+        }
     }
 
 
@@ -85,8 +115,6 @@
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     function buyUpgrade(itemNumber) {
-        console.log("Buying upgrade " + itemNumber);
-
         // if the player has enough gold
         if (gold >= upgradeCosts[itemNumber]) {
             // buy the upgrade increase the quantity
@@ -96,17 +124,38 @@
             // apply the effect of the upgrade (increase the rate)
             addScoreRate(upgradeRates[itemNumber]);
         }
-
     }
 
     function buyBoost(itemNumber) {
-        console.log("Buying boost " + itemNumber);
+        // if the player has enough gold
+        if (gold >= boostCosts[itemNumber]) {
+            // buy the boost
+            addBoost(itemNumber);
+            deductGold(boostCosts[itemNumber]);
+        }
     }
 
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Update functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    // Update boost
+    function updateBoost() {
+        if ((currentBoost !== null) && (currentBoostDuration >= 0)) {
+
+            if (currentBoostDuration == 0) {
+                // deactivate the boost
+                deductBoost();
+            } else {
+                // update DOM with the countdown
+                var upgradeDOM = String('#boost-' + currentBoost);
+                $(upgradeDOM).find(".item-active-boost").html(currentBoostDuration + ' s left');
+                // countdown boost activation
+                currentBoostDuration--;
+            }
+        }
+    }
 
     // The following function greys out the items the player
     // cannot afford at the moment.
@@ -141,6 +190,7 @@
     }
 
     function update() {
+        updateBoost();
         addGold(goldRate);
         addScore(scoreRate);
         updateDisplay();
