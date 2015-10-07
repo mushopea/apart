@@ -42,6 +42,20 @@
 
     function buyUpgrade(itemNumber) {
         console.log("Buying upgrade " + itemNumber);
+
+        // if the player has enough gold
+        if (gold >= upgradeCosts[itemNumber]) {
+            // buy the upgrade increase the quantity
+            upgradeQuantities[itemNumber]++;
+            // update the display of quantity
+            $('#upgrade' + itemNumber + '> item-qty').textContent = String(upgradeQuantities[itemNumber]);
+            // deduct gold
+            gold -= upgradeCosts[itemNumber];
+            // apply the effect of the upgrade (increase the rate)
+            scoreRate += upgradeRates[itemNumber];
+            if (scoreRate > maxScoreRate) { scoreRate = maxScoreRate; }
+        }
+
     }
 
     function buyBoost(itemNumber) {
@@ -70,7 +84,7 @@
 
     function updateStatsDisplay() {
         document.querySelector('#poor-player-gold').textContent = gold;
-        document.querySelector('#poor-player-score').textContent = score;
+        document.querySelector('#poor-player-score').textContent = Math.round( score * 10 ) / 10;
         document.querySelector('#poor-player-rate').textContent = scoreRate;
     }
 
