@@ -15,10 +15,9 @@
 // boosts
     var currentBoost = null; // change every second, set on event
     var currentBoostDuration = 0; // change every second, set on event
-    var boostIsBuyable = [false, false, false, false, false]; // change every second
+
     // upgrades
     var upgradeQuantities = [0, 0, 0, 0, 0]; // change on event
-    var upgradeIsBuyable = [false, false, false, false, false]; // change every second
 
     // Maximum Variables
     var maxGold = 900;
@@ -48,7 +47,8 @@
             // buy the upgrade increase the quantity
             upgradeQuantities[itemNumber]++;
             // update the display of quantity
-            $('#upgrade' + itemNumber + '> item-qty').textContent = String(upgradeQuantities[itemNumber]);
+            var upgradeDOM = String('#upgrade-' + itemNumber);
+            $(upgradeDOM).find(".item-qty").html('Qty: ' + String(upgradeQuantities[itemNumber]));
             // deduct gold
             gold -= upgradeCosts[itemNumber];
             // apply the effect of the upgrade (increase the rate)
@@ -85,7 +85,7 @@
     function updateStatsDisplay() {
         document.querySelector('#poor-player-gold').textContent = gold;
         document.querySelector('#poor-player-score').textContent = Math.round( score * 10 ) / 10;
-        document.querySelector('#poor-player-rate').textContent = scoreRate;
+        document.querySelector('#poor-player-rate').textContent = '+' + scoreRate;
     }
 
     // Refreshes the entire display every second
