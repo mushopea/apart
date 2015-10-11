@@ -1,8 +1,9 @@
 (function() {
     // Game variables
-    var levelDuration = 120;
+    var levelDuration = 360;
     var levels = 1;
     var currentLevel = 1;
+    var raceLineHeight = 530;
     // score
     var score = 0; // change every second
     var grade = 'F9'; // change every second
@@ -21,14 +22,14 @@
 
     // Maximum Variables
     var maxGold = 900;
-    var maxScore = 1000;
-    var maxScoreRate = 50;
+    var maxScore = 10000;
+    var maxScoreRate = 500;
     var maxUpgradePurchases = 99;
 
     // Constant Variables
     var upgradeNames = ['Stress Balloons', 'Stationery', 'Practice Papers', 'Guidebook', 'Tuition'];
-    var upgradeCosts = [5, 10, 15, 25, 40];
-    var upgradeRates = [0.1, 0.2, 0.5, 1.0, 2.0];
+    var upgradeCosts = [1, 10, 15, 25, 40];
+    var upgradeRates = [1000, 20, 50, 100, 200];
 
     var boostNames = ['Water', 'Milo', 'Coffee', 'Red Bull', 'Chicken Essence'];
     var boostCosts = [1, 3, 5, 7, 10];
@@ -37,6 +38,21 @@
 
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
     var scoresForGrades = [350, 450, 500, 550, 600, 650, 700, 1000, 999999];
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Utility functions
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    function round(value){
+        return Math.round( value * 10 ) / 10;
+    }
+
+
+    function calculateNewRacePosition(scoreVal) {
+        var roundScore = round(scoreVal);
+        var percentageOfMaxScore = roundScore/maxScore;
+        var newRacePosition = Math.round(raceLineHeight - percentageOfMaxScore*raceLineHeight);
+        return newRacePosition;
+    }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Add functions
@@ -77,7 +93,7 @@
     }
 
     function addUpgrade(upgradeNumber) {
-        if(upgradeQuantities[upgradeNumber] < maxUpgradePurchases) {
+        if (upgradeQuantities[upgradeNumber] < maxUpgradePurchases) {
             upgradeQuantities[upgradeNumber]++;
         }
         // update the display of quantity
@@ -116,7 +132,7 @@
 
     function buyUpgrade(itemNumber) {
         // if the player has enough gold
-        if (gold >= upgradeCosts[itemNumber]) {
+        if ((gold >= upgradeCosts[itemNumber]) && (upgradeQuantities[itemNumber] < maxUpgradePurchases)) {
             // buy the upgrade increase the quantity
             addUpgrade(itemNumber);
             // deduct gold
@@ -179,14 +195,24 @@
 
     function updateStatsDisplay() {
         document.querySelector('#poor-player-gold').textContent = gold;
-        document.querySelector('#poor-player-score').textContent = Math.round( score * 10 ) / 10;
-        document.querySelector('#poor-player-rate').textContent = '+' + Math.round( scoreRate * 10 ) / 10;
+        document.querySelector('#poor-player-score').textContent = round(score);
+        document.querySelector('#poor-player-rate').textContent = '+' + round(scoreRate);
+    }
+
+    function updateRaceLineDisplay() {
+        // update poor score and position
+        var poorDiv = document.getElementById("poor-race");
+        poorDiv.title = round(score);
+        var newPosition = calculateNewRacePosition(score);
+        console.log(newPosition);
+        $("#poor-race").css({top: newPosition + "px"});
     }
 
     // Refreshes the entire display every second
     function updateDisplay() {
         updateItemDisplay();
         updateStatsDisplay();
+        updateRaceLineDisplay();
     }
 
     function update() {

@@ -65,7 +65,44 @@ html, body {
     position: absolute;
     margin: 0 auto;
     width: 100%;
-    top: 558px;
+}
+
+#rich-race {
+    padding-left: 70px;
+    top: 530px;
+}
+
+#poor-race {
+    padding-right: 70px;
+    top: 530px;
+}
+
+.race-score {
+    color: cornflowerblue;
+    padding: 3px;
+    width: 100px;
+    background: white;
+}
+
+#rich-race:after, #poor-race:after {
+    width: 40px;
+    font-size: 0.8em;
+    padding: 1px 0;
+    font-weight: bold;
+    background: white;
+    color: cornflowerblue;
+    content: attr(title);
+    position: absolute;
+    border-radius: 3px;
+    margin-top: 56px;
+}
+
+#rich-race:after {
+    margin-left: -47px;
+}
+
+#poor-race:after {
+    margin-left: -61px;
 }
 
 .sprite-container {
