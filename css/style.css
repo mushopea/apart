@@ -41,26 +41,68 @@ html, body {
 }
 
 .player-screen {
-    height: 500px;
+    height: 608px;
+    position: relative;
+    width: 100%;
 }
 
-.player-screen img {
-    height: 80%;
+.race-line-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.race-line {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.race-line > * {
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    top: 558px;
+}
+
+.sprite-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.sprite-container img {
+    width: 30%;
     margin: 25px;
 }
 
 .poor {
     background: #F8E1DD;
     height: 100%;
+    width: 50%;
+    position: relative;
+    float: left;
 }
 
 .rich {
     background: #c9c0fb;
     height: 100%;
+    width: 50%;
+    position: relative;
+    float: left;
 }
 
 .stat-screen {
-    height: 108px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 .stats {
@@ -68,7 +110,7 @@ html, body {
     margin: 0 auto;
     padding-top: 10px;
     text-align: center;
-    height: 100%;
+    height: 108px;
     background: rgba(255, 255, 255, 0.4);
 }
 
@@ -95,6 +137,17 @@ html, body {
 
 .item-screen {
     text-align: center;
+}
+
+.item-screen-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8em;
+    font-weight: 700;
+    padding: 5px 0;
+    background: black;
+    color: white;
+    margin-top: 20px;
 }
 
 .item-cell {
@@ -162,8 +215,7 @@ html, body {
 }
 
 .item-cell:hover:after{
-    background: #333;
-    background: rgba(0,0,0,.8);
+    background: #303030;
     border-radius: 5px;
     color: #fff;
     content: attr(title);
