@@ -1,39 +1,45 @@
 (function() {
     // Game variables
     var levelDuration = 300;
-    var levels = 1;
-    var currentLevel = 1;
     var raceLineHeight = 530;
-    var mode = "studying";
     var gameHasStarted = false;
+
+    // * * * * * * * * * * * * * * * * * * *
+    // Player
+    // * * * * * * * * * * * * * * * * * * *
 
     // score
     var score = 0; // change every second
     var grade = 'F9'; // change every second
     var scoreRate = 0.0; // change on event
     var clickScoreRate = 1;
-
     // gold
     var gold = 0; // change every second
-    var goldRate = 1; // change on event
     var clickGoldRate = 1;
-
-    // bubbles
-    var bubbleVisibilities = [false, false, false, false]; // change every second
-// boosts
+    // boost
     var currentBoost = null; // change every second, set on event
     var currentBoostDuration = 0; // change every second, set on event
-
     // upgrades
     var upgradeQuantities = [0, 0, 0, 0, 0]; // change on event
+    // mode
+    var mode = "studying";
 
-    // Maximum Variables
-    var maxGold = 900;
-    var maxScore = 10000;
-    var maxScoreRate = 500;
-    var maxUpgradePurchases = 99;
+    // * * * * * * * * * * * * * * * * * * *
+    // RichKid
+    // * * * * * * * * * * * * * * * * * * *
 
+    // score
+    var rScore = 0;
+    var rGrade = 'F9';
+    var rScoreRate = 0.0;
+    var rGold = 0;
+    var rGoldRate = 100;
+    var rUpgradeQuantities = [0, 0, 0, 0, 0];
+
+    // * * * * * * * * * * * * * * * * * * *
     // Constant Variables
+    // * * * * * * * * * * * * * * * * * * *
+
     var upgradeNames = ['Stress Balloons', 'Stationery', 'Practice Papers', 'Guidebook', 'Tuition'];
     var upgradeCosts = [5, 10, 15, 25, 40];
     var upgradeRates = [10, 20, 50, 100, 200];
@@ -47,6 +53,12 @@
     var scoresForGrades = [350, 450, 500, 550, 600, 650, 700, 1000, 999999];
 
     var statuses = ['You are studying to improve your score.', 'You are working to earn some gold.'];
+
+    // Maximum Variables
+    var maxGold = 900;
+    var maxScore = 10000;
+    var maxScoreRate = 500;
+    var maxUpgradePurchases = 99;
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Utility functions
@@ -325,10 +337,6 @@
                 // add one second so that the count down starts at the full duration
                 // example 05:00 not 04:59
                 start = Date.now() + 1000;
-                currentLevel++;
-                if (currentLevel > levels) {
-                    alert('Time\'s up');
-                }
                 $('.time-screen').removeClass('last-ten-seconds');
             }
 
