@@ -28,7 +28,6 @@
     // RichKid
     // * * * * * * * * * * * * * * * * * * *
 
-    // score
     var rScore = 0;
     var rGrade = 'F9';
     var rScoreRate = 0.0;
@@ -189,6 +188,72 @@
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // RICH KID FUNCTIONS
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    function addScoreRateForRich(value) {
+        if (gameHasStarted) {
+            rScoreRate  += value;
+            if (rScoreRate  > maxScoreRate) { rScoreRate  = maxScoreRate; }
+        }
+    }
+
+    function deductGoldForRich(value) {
+        if (gameHasStarted) {
+            if (rGold >= value) {
+                rGold -= value;
+            } else {
+                rGold = 0;
+            }
+        }
+        updateDisplay();
+    }
+
+    function addGoldForRich(value) {
+        if (gameHasStarted) {
+            if (rGold > maxGold) {
+                rGold = maxGold;
+            } else {
+                rGold += value;
+            }
+        }
+        updateDisplay();
+    }
+
+    function addScoreForRich(value) {
+        if (gameHasStarted) {
+            rScore += value;
+            if (rScore > maxScore) {
+                rScore = maxScore;
+            }
+        }
+        updateDisplay();
+    }
+
+    function addUpgradeForRich(upgradeNumber) {
+        if (rUpgradeQuantities[upgradeNumber] < maxUpgradePurchases) {
+            rUpgradeQuantities[upgradeNumber]++;
+
+            // post on messages that rich kid bought something.
+            $('.message-list').append("<li>Bought " + upgradeNames[upgradeNumber] + "<\/li>");
+            $('#rich-messages').animate({scrollTop: $('#rich-messages').prop("scrollHeight")}, 300);
+        }
+    }
+
+    function buyUpgradeForRich(itemNumber) {
+        // if the player has enough rGold
+        if ((rGold >= upgradeCosts[itemNumber]) && (rUpgradeQuantities[itemNumber] < maxUpgradePurchases)) {
+            // buy the upgrade increase the quantity
+            addUpgradeForRich(itemNumber);
+            // deduct rGold
+            deductGoldForRich(upgradeCosts[itemNumber]);
+            // apply the effect of the upgrade (increase the rate)
+            addScoreRateForRich(upgradeRates[itemNumber]);
+        }
+    }
+
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Click functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     function clickGold() {
@@ -275,6 +340,10 @@
         document.getElementById("poor-race").title = round(score);
         var newPosition = calculateNewRacePosition(score);
         $("#poor-race").css({top: newPosition + "px"});
+        // update rich score and position
+        document.getElementById("rich-race").title = round(rScore);
+        var newPosition = calculateNewRacePosition(rScore);
+        $("#rich-race").css({top: newPosition + "px"});
     }
 
     // Refreshes the entire display every second
