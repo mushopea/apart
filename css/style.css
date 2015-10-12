@@ -206,8 +206,13 @@ html, body {
 }
 
 .clickable:active .clickbutton {
-    background: #da8f00;
+    background: #f68683;
     box-shadow: 0px 2px #a7466d;
+}
+
+.clickable:active img {
+    -webkit-filter: brightness(1.08);
+    filter: brightness(1.08);
 }
 
 .clickbutton {

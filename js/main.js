@@ -497,7 +497,7 @@
     }
 
     function initializeClickables() {
-        var clickScoreDOM =  $("#clickscore");
+        var clickScoreDOM = $("#clickscore");
         var clickGoldDOM = $("#clickgold");
         var statusDOM = $("#status");
 
