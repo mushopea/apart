@@ -135,6 +135,72 @@ html, body {
     float: left;
 }
 
+#clickgold {
+    position: absolute;
+    left: 24px;
+    top: 281px;
+}
+
+#clickscore {
+    position: absolute;
+    left: 375px;
+    top: 285px;
+}
+
+#clickgold img {
+    width: 110px;
+}
+
+#clickscore img {
+    width: 120px;
+}
+
+.unclickable img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.clickable {
+    z-index: 1000;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.status {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    padding: 6px;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.clickable:hover:before{
+    background: #303030;
+    border-radius: 5px;
+    color: #fff;
+    content: attr(title);
+    padding: 5px 15px;
+    position: absolute;
+    margin-left: 12px;
+    margin-top: -17px;
+}
+
+/*.unclickable:before {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: deepskyblue;
+    color: white;
+    content: attr(title);
+    position: absolute;
+    margin-top: 45px;
+    margin-left: 34px;
+    z-index: 100;
+}*/
+
 .stat-screen {
     position: absolute;
     width: 100%;

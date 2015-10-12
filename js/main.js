@@ -1,6 +1,6 @@
 (function() {
     // Game variables
-    var levelDuration = 360;
+    var levelDuration = 300;
     var levels = 1;
     var currentLevel = 1;
     var raceLineHeight = 530;
@@ -28,12 +28,12 @@
 
     // Constant Variables
     var upgradeNames = ['Stress Balloons', 'Stationery', 'Practice Papers', 'Guidebook', 'Tuition'];
-    var upgradeCosts = [1, 10, 15, 25, 40];
-    var upgradeRates = [1000, 20, 50, 100, 200];
+    var upgradeCosts = [5, 10, 15, 25, 40];
+    var upgradeRates = [10, 20, 50, 100, 200];
 
     var boostNames = ['Water', 'Milo', 'Coffee', 'Red Bull', 'Chicken Essence'];
     var boostCosts = [1, 3, 5, 7, 10];
-    var boostRates = [0.1, 0.3, 0.5, 0.7, 1.0];
+    var boostRates = [10, 30, 50, 70, 100];
     var boostDurations = [5, 5, 5, 5, 10];
 
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
@@ -201,10 +201,8 @@
 
     function updateRaceLineDisplay() {
         // update poor score and position
-        var poorDiv = document.getElementById("poor-race");
-        poorDiv.title = round(score);
+        document.getElementById("poor-race").title = round(score);
         var newPosition = calculateNewRacePosition(score);
-        console.log(newPosition);
         $("#poor-race").css({top: newPosition + "px"});
     }
 
