@@ -138,24 +138,21 @@ html, body {
     float: left;
 }
 
-#clickgold {
+#clickgold, #clickscore {
     position: absolute;
-    left: 24px;
-    top: 281px;
+    top: 106px;
 }
 
-#clickscore {
-    position: absolute;
-    left: 375px;
-    top: 285px;
-}
-
-#clickgold img {
+#clickgold img, #clickscore img {
     width: 110px;
 }
 
-#clickscore img {
-    width: 120px;
+#clickgold {
+    left: 24px;
+}
+
+#clickscore {
+    left: 375px;
 }
 
 .unclickable img {
@@ -171,11 +168,31 @@ html, body {
     cursor: pointer;
 }
 
+.clickable:hover .clickbutton {
+    background: #da6262;
+}
+
+.clickbutton {
+    font-weight: 700;
+    padding: 4px;
+    width: 100px;
+    border-radius: 5px;
+    color: white;
+    background: indianred;
+    position: absolute;
+    margin-left: 25px;
+    margin-top: -19px;
+}
+
+#clickscorebutton {
+    left: 10px;
+}
+
 .status {
     position: absolute;
     width: 100%;
     bottom: 0px;
-    padding: 6px;
+    padding: 25px;
     font-size: 1.5em;
     font-weight: 700;
 }

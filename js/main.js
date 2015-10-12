@@ -4,13 +4,19 @@
     var levels = 1;
     var currentLevel = 1;
     var raceLineHeight = 530;
+    var mode = "studying";
+
     // score
     var score = 0; // change every second
     var grade = 'F9'; // change every second
     var scoreRate = 0.0; // change on event
+    var clickScoreRate = 1;
+
     // gold
     var gold = 0; // change every second
     var goldRate = 1; // change on event
+    var clickGoldRate = 1;
+
     // bubbles
     var bubbleVisibilities = [false, false, false, false]; // change every second
 // boosts
@@ -38,6 +44,8 @@
 
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
     var scoresForGrades = [350, 450, 500, 550, 600, 650, 700, 1000, 999999];
+
+    var statuses = ['You are studying to improve your score.', 'You are working to earn some gold.'];
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Utility functions
@@ -151,6 +159,28 @@
         }
     }
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Click functions
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    function clickGold() {
+        mode = "working";
+        // activate work and deactivate study
+        $("#clickgold").removeClass("unclickable");
+        $("#clickscore").addClass("unclickable");
+        $("#status").text(statuses[1]);
+
+        addGold(clickGoldRate);
+    }
+
+    function clickScore() {
+        mode = "studying";
+        // activate study and deactivate work
+        $("#clickscore").removeClass("unclickable");
+        $("#clickgold").addClass("unclickable");
+        $("#status").text(statuses[0]);
+
+        addScore(clickScoreRate);
+    }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Update functions
@@ -159,7 +189,6 @@
     // Update boost
     function updateBoost() {
         if ((currentBoost !== null) && (currentBoostDuration >= 0)) {
-
             if (currentBoostDuration == 0) {
                 // deactivate the boost
                 deductBoost();
@@ -172,6 +201,15 @@
             }
         }
     }
+
+    // Trigger any random event
+    function updateRandomEvent() {
+        console.log('random event for this second');
+    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Update display functions
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     // The following function greys out the items the player
     // cannot afford at the moment.
@@ -214,10 +252,20 @@
     }
 
     function update() {
+        // countdown boost
         updateBoost();
-        addGold(goldRate);
-        addScore(scoreRate);
+
+        // trigger random event if any
+        updateRandomEvent();
+
+        // passive score
+        if (mode == "studying") {
+            addScore(scoreRate);
+        }
+
+        // displays
         updateDisplay();
+        updateStatsDisplay();
     }
 
 
@@ -300,6 +348,35 @@
         document.getElementById("item-screen").innerHTML = html;
     }
 
+    function initializeClickables() {
+        var clickScoreDOM =  $("#clickscore");
+        var clickGoldDOM = $("#clickgold");
+        var statusDOM = $("#status");
+
+        // set up click events
+        clickScoreDOM.click(function () {
+            clickScore();
+        });
+        clickGoldDOM.click(function () {
+            clickGold();
+        });
+
+        // set the tooltip value
+        clickScoreDOM.attr('title', 'Study for +' + clickScoreRate +  ' score');
+        clickGoldDOM.attr('title', 'Work for +' + clickGoldRate +  ' gold');
+
+        // set up the display DOM
+        if (mode == "working") {
+            clickGoldDOM.removeClass("unclickable");
+            clickScoreDOM.addClass("unclickable");
+            statusDOM.text(statuses[1]);
+        } else { // studying
+            clickScoreDOM.removeClass("unclickable");
+            clickGoldDOM.addClass("unclickable");
+            statusDOM.text(statuses[0]);
+        }
+    }
+
     function startGame() {
         // DOM
         var timeDisplay = document.querySelector('#time');
@@ -311,6 +388,7 @@
 
         // Initialization
         populateUpgradesAndBoosts();
+        initializeClickables();
 
         // Start game when click 'Start'
         $('#time').click(function() {
