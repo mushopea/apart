@@ -3,6 +3,7 @@
     var levelDuration = 300;
     var raceLineHeight = 530;
     var gameHasStarted = false;
+    var secondsPassed = 0;
 
     // * * * * * * * * * * * * * * * * * * *
     // Player
@@ -32,7 +33,7 @@
     var rGrade = 'F9';
     var rScoreRate = 0.0;
     var rGold = 0;
-    var rGoldRate = 100;
+    var rGoldRate = 50;
     var rUpgradeQuantities = [0, 0, 0, 0, 0];
 
     // * * * * * * * * * * * * * * * * * * *
@@ -65,7 +66,6 @@
     function round(value){
         return Math.round( value * 10 ) / 10;
     }
-
 
     function calculateNewRacePosition(scoreVal) {
         var roundScore = round(scoreVal);
@@ -109,7 +109,7 @@
 
     function addGold(value) {
         if (gameHasStarted) {
-            if (gold > maxGold) {
+            if ((gold + value) > maxGold) {
                 gold = maxGold;
             } else {
                 gold += value;
@@ -136,7 +136,6 @@
         var upgradeDOM = String('#upgrade-' + upgradeNumber);
         $(upgradeDOM).find(".item-qty").html('Qty: ' + String(upgradeQuantities[upgradeNumber]));
     }
-
 
     function addBoost(boostNumber) {
         deductBoost();
@@ -206,18 +205,18 @@
                 rGold = 0;
             }
         }
-        updateDisplay();
+        updateRichKidDisplay();
     }
 
     function addGoldForRich(value) {
         if (gameHasStarted) {
-            if (rGold > maxGold) {
+            if ((rGold+value) >= maxGold) {
                 rGold = maxGold;
             } else {
                 rGold += value;
             }
         }
-        updateDisplay();
+        updateRichKidDisplay();
     }
 
     function addScoreForRich(value) {
@@ -227,7 +226,7 @@
                 rScore = maxScore;
             }
         }
-        updateDisplay();
+        updateRichKidDisplay();
     }
 
     function addUpgradeForRich(upgradeNumber) {
@@ -249,6 +248,15 @@
             deductGoldForRich(upgradeCosts[itemNumber]);
             // apply the effect of the upgrade (increase the rate)
             addScoreRateForRich(upgradeRates[itemNumber]);
+        }
+    }
+
+    // takes in an array of things to buy
+    function buyMultipleUpgradesForRich(shoppingList) {
+        if ((shoppingList instanceof Array) && (shoppingList.length > 0)) {
+            for (var i = 0; i < shoppingList.length; i++) { // go through shopping list and buy the things
+                buyUpgradeForRich(shoppingList[i]);
+            }
         }
     }
 
@@ -283,6 +291,32 @@
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Update functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    // Buy stuff for rich kid at particular times
+    function updateRichKidPurchases() {
+        var thingsToBuy = [];
+        switch(secondsPassed) {
+            case 10:
+                thingsToBuy = [4, 2];
+                break;
+            case 20:
+                thingsToBuy = [3, 3, 2];
+                break;
+            case 30:
+                thingsToBuy = [4, 0, 0, 0, 0];
+            default:
+                thingsToBuy = [];
+        }
+        if (thingsToBuy.length > 0) {
+            buyMultipleUpgradesForRich(thingsToBuy);
+        }
+    }
+
+    // Update rich kid's stats
+    function updateRichKidStats() {
+        addScoreForRich(rScoreRate);
+        addGoldForRich(rGoldRate);
+    }
 
     // Update boost
     function updateBoost() {
@@ -346,6 +380,12 @@
         $("#rich-race").css({top: newPosition + "px"});
     }
 
+    function updateRichKidDisplay() {
+        document.querySelector('#rich-player-gold').textContent = rGold;
+        document.querySelector('#rich-player-score').textContent = round(rScore);
+        document.querySelector('#rich-player-rate').textContent = '+' + round(rScoreRate);
+    }
+
     // Refreshes the entire display every second
     function updateDisplay() {
         updateItemDisplay();
@@ -359,6 +399,11 @@
 
         // trigger random event if any
         updateRandomEvent();
+
+        // do rich kids actions
+        updateRichKidPurchases();
+        updateRichKidStats();
+        updateRichKidDisplay();
 
         // passive score
         if (mode == "studying") {
@@ -385,6 +430,7 @@
             // get the number of seconds that have elapsed since
             // startTimer() was called
             diff = duration - (((Date.now() - start) / 1000) | 0);
+            secondsPassed++;
 
             // does the same job as parseInt truncates the float
             minutes = (diff / 60) | 0;
