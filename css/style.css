@@ -49,6 +49,7 @@ html, body {
     margin-top: 148px;
     margin-left: 397px;
     z-index: 100;
+    font-size: 0.9em;
 }
 
 .messages ul {
