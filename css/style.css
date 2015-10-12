@@ -31,28 +31,24 @@ html, body {
     display: inline-block;
     vertical-align: middle;
     height: 100%;
-    margin: 0 20px;
 }
+
 
 .messages {
-    display: inline-block;
-    background: #242424;
-    color: white;
-    vertical-align: middle;
-    width: 257px;
-    height: 100%;
-}
-
-#rich-messages, #poor-messages {
-    vertical-align: middle;
-    height: 400px;
-    width: 100%;
+    height: 246px;
+    width: 183px;
     overflow-x: hidden;
     overflow-y: auto;
     text-align: left;
-    padding: 20px;
-    margin-top: 150px;
+    padding: 10px;
+    word-wrap: break-word;
     line-height: 1.5;
+    position: absolute;
+    color: #FFF;
+    background: #000;
+    margin-top: 148px;
+    margin-left: 397px;
+    z-index: 100;
 }
 
 .messages ul {
@@ -176,7 +172,7 @@ html, body {
 
 #clickgold, #clickscore {
     position: absolute;
-    top: 106px;
+    top: 218px;
 }
 
 #clickgold img, #clickscore img {
@@ -389,4 +385,23 @@ html, body {
     position: absolute;
     margin-left: -110px;
     margin-top: -195px;
+}
+
+@media screen and (max-width: 1280px){
+    body{
+        -moz-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        -ms-transform: scale(0.8, 0.8);
+        -o-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+}
+@media screen and (max-height: 900px){
+    body{
+        -moz-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        -ms-transform: scale(0.8, 0.8);
+        -o-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
 }
