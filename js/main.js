@@ -5,6 +5,7 @@
     var currentLevel = 1;
     var raceLineHeight = 530;
     var mode = "studying";
+    var gameHasStarted = false;
 
     // score
     var score = 0; // change every second
@@ -67,37 +68,53 @@
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     function deductScoreRate(value) {
-        if (scoreRate > value) {
-            scoreRate -= value;
-        } else {
-            scoreRate = 0;
+        if (gameHasStarted) {
+            if (scoreRate > value) {
+                scoreRate -= value;
+            } else {
+                scoreRate = 0;
+            }
         }
+        updateDisplay();
     }
 
     function addScoreRate(value) {
-        scoreRate += value;
-        if (scoreRate > maxScoreRate) { scoreRate = maxScoreRate; }
+        if (gameHasStarted) {
+            scoreRate += value;
+            if (scoreRate > maxScoreRate) { scoreRate = maxScoreRate; }
+        }
     }
 
     function deductGold(value) {
-        if (gold >= value) {
-            gold -= value;
-        } else {
-            gold = 0;
+        if (gameHasStarted) {
+            if (gold >= value) {
+                gold -= value;
+            } else {
+                gold = 0;
+            }
         }
+        updateDisplay();
     }
 
     function addGold(value) {
-        if (gold > maxGold) {
-            gold = maxGold;
-        } else {
-            gold += value;
+        if (gameHasStarted) {
+            if (gold > maxGold) {
+                gold = maxGold;
+            } else {
+                gold += value;
+            }
         }
+        updateDisplay();
     }
 
     function addScore(value) {
-        score += value;
-        if (score > maxScore) { score = maxScore; }
+        if (gameHasStarted) {
+            score += value;
+            if (score > maxScore) {
+                score = maxScore;
+            }
+        }
+        updateDisplay();
     }
 
     function addUpgrade(upgradeNumber) {
@@ -163,23 +180,27 @@
     // Click functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     function clickGold() {
-        mode = "working";
-        // activate work and deactivate study
-        $("#clickgold").removeClass("unclickable");
-        $("#clickscore").addClass("unclickable");
-        $("#status").text(statuses[1]);
+        if (gameHasStarted) {
+            mode = "working";
+            // activate work and deactivate study
+            $("#clickgold").removeClass("unclickable");
+            $("#clickscore").addClass("unclickable");
+            $("#status").text(statuses[1]);
 
-        addGold(clickGoldRate);
+            addGold(clickGoldRate);
+        }
     }
 
     function clickScore() {
-        mode = "studying";
-        // activate study and deactivate work
-        $("#clickscore").removeClass("unclickable");
-        $("#clickgold").addClass("unclickable");
-        $("#status").text(statuses[0]);
+        if (gameHasStarted) {
+            mode = "studying";
+            // activate study and deactivate work
+            $("#clickscore").removeClass("unclickable");
+            $("#clickgold").addClass("unclickable");
+            $("#status").text(statuses[0]);
 
-        addScore(clickScoreRate);
+            addScore(clickScoreRate);
+        }
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -378,6 +399,8 @@
     }
 
     function startGame() {
+        gameHasStarted = true;
+        $('.player-screen').removeClass("grey");
         // DOM
         var timeDisplay = document.querySelector('#time');
         startTimer(levelDuration, timeDisplay);
