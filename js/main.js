@@ -235,7 +235,7 @@
 
             // post on messages that rich kid bought something.
             $('.message-list').append("<li>Bought " + upgradeNames[upgradeNumber] + "<\/li>");
-            $('#rich-messages').animate({scrollTop: $('#rich-messages').prop("scrollHeight")}, 300);
+            $('.messages').animate({scrollTop: $('.messages').prop("scrollHeight")}, 300);
         }
     }
 
@@ -297,13 +297,17 @@
         var thingsToBuy = [];
         switch(secondsPassed) {
             case 10:
-                thingsToBuy = [4, 2];
+                thingsToBuy = [4, 2, 3, 3, 1, 1, 3];
                 break;
             case 20:
-                thingsToBuy = [3, 3, 2];
+                thingsToBuy = [3, 3, 2, 4, 2, 1];
                 break;
             case 30:
                 thingsToBuy = [4, 0, 0, 0, 0];
+                break;
+            case 40:
+                thingsToBuy = [4, 3, 2, 1, 1];
+                break;
             default:
                 thingsToBuy = [];
         }
