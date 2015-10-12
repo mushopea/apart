@@ -67,13 +67,17 @@ html, body {
     width: 100%;
 }
 
+.race img {
+    width: 50px;
+}
+
 #rich-race {
-    padding-left: 70px;
+    padding-left: 50px;
     top: 530px;
 }
 
 #poor-race {
-    padding-right: 70px;
+    padding-right: 50px;
     top: 530px;
 }
 
@@ -87,22 +91,21 @@ html, body {
 #rich-race:after, #poor-race:after {
     width: 40px;
     font-size: 0.8em;
-    padding: 1px 0;
     font-weight: bold;
     background: white;
     color: cornflowerblue;
     content: attr(title);
     position: absolute;
     border-radius: 3px;
-    margin-top: 56px;
+    margin-top: 41px;
 }
 
 #rich-race:after {
-    margin-left: -47px;
+    margin-left: -37px;
 }
 
 #poor-race:after {
-    margin-left: -61px;
+    margin-left: -51px;
 }
 
 .sprite-container {
