@@ -416,6 +416,7 @@ html, body {
 
 .event-points {
     font-weight: 700;
+    display: inline;
 }
 
 .event-points.add {

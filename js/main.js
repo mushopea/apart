@@ -342,6 +342,7 @@
         textDOM.html(text);
         titleDOM.html(title);
         pointsDOM.html(" " + change + score + " points");
+        console.log(score);
 
         displayDOM.fadeIn('fast').delay(2000).fadeOut('fast');
     }
@@ -355,7 +356,7 @@
     }
 
     function triggerAnyBadEvent() {
-        if (score > (maxScore / 5)) {
+        if (score > (maxScore / 100)) {
             console.log("Triggering a bad event");
             var eventNumberToTrigger = Math.floor(Math.random() * badEvents.length);
             var eventType = badEvents[eventNumberToTrigger][1];
