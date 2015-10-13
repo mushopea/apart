@@ -52,13 +52,43 @@
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
     var scoresForGrades = [350, 450, 500, 550, 600, 650, 700, 1000, 999999];
 
-    var statuses = ['You are studying to improve your score.', 'You are working to earn some gold.'];
+    var statuses = ["You are studying to improve your score.", "You are working to earn some gold."];
+
+    var goodEvents = [
+      ["Good Event 1", 0.1],
+      ["Good Event 2", 0.07],
+      ["Good Event 3", 0.05],
+      ["Good Event 4", 0.04],
+      ["Good Event 5", 0.25],
+      ["Good Event 6", 0.02],
+      ["Good Event 7", 0.01],
+    ];
+
+    var badEvents = [
+      ["Bad Event 1", 1, 0.05],
+      ["Bad Event 2", 1, 0.04],
+      ["Bad Event 3", 1, 0.03],
+      ["Bad Event 4", 1, 0.02],
+      ["Bad Event 5", 1, 0.01],
+      ["Bad Event 6", 2, 0.05],
+      ["Bad Event 7", 2, 0.04],
+      ["Bad Event 8", 2, 0.03],
+      ["Bad Event 9", 2, 0.02],
+      ["Bad Event 10", 2, 0.01]
+    ]; // 1 = add to rich, 2 = deduct from poor
 
     // Maximum Variables
     var maxGold = 900;
     var maxScore = 10000;
     var maxScoreRate = 500;
     var maxUpgradePurchases = 99;
+
+    // Game Random Event Balancing variables
+    var idealDiff = -2500;
+    var maxDiff = maxScore;
+    var goodRange = Math.abs(0 - maxDiff - idealDiff);
+    var badRange = Math.abs(maxDiff * 2) - goodRange;
+
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Utility functions
@@ -262,6 +292,21 @@
 
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Event triggering functions
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    function triggerAnyGoodEvent() {
+        console.log("Triggering a good event");
+        var eventNumberToTrigger = Math.floor(Math.random() * goodEvents.length);
+
+    }
+
+    function triggerAnyBadEvent() {
+        console.log("Triggering a bad event");
+        var eventNumberToTrigger = Math.floor(Math.random() * badEvents.length);
+
+    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Click functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     function clickGold() {
@@ -340,7 +385,21 @@
 
     // Trigger any random event
     function updateRandomEvent() {
-        console.log('random event for this second');
+        var randomNo = 999999;
+        var currentDiff = score - rScore; // difference between poor and rich score
+        var degreeOfDifference = Math.abs(currentDiff - idealDiff);
+
+        if (currentDiff < idealDiff) { // User is lagging behind a lot, randomly trigger good events
+            randomNo = (Math.random() * (goodRange - 1)) + 1;
+            if (randomNo <= degreeOfDifference) {
+                triggerAnyGoodEvent();
+            }
+        } else if (currentDiff > idealDiff) { // User is catching up too much, quick put him down! Muahaha
+            randomNo = (Math.random() * (badRange - 1)) + 1;
+            if (randomNo <= degreeOfDifference) {
+                triggerAnyBadEvent();
+            }
+        }
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
