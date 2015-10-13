@@ -56,7 +56,6 @@
 
     // Good events: <Text> <Percentage to change> <Title>
     var goodEvents = [
-<<<<<<< HEAD
       ["My siblings are sleeping over at my aunt's - I finally have the room to myself! ", 0.1, "Home Alone!"],
       ["My brother is away on a camping trip, I can finally concentrate! ", 0.07, "Peace and Quiet"],
       ["Dad is taking an off day today, so I don't have to help him at the store - more time to study! ", 0.05, "No Work Today!"],
@@ -64,20 +63,10 @@
       ["My friend invites me to study at his air-conditioned, super huge room - yay!", 0.25, "Study Buddy"],
       ["My financial aid application got approved - I can work one less job!", 0.02, "Drop the job"],
       ["I play rock-paper-scissors with my siblings to see whofll be doing the chores for the week - I win! Hah!  ", 0.01, "Rock-paper-scissors"]
-=======
-      ["Good Event 1", 0.1, "Title Here"],
-      ["Good Event 2", 0.07, "Title Here"],
-      ["Good Event 3", 0.05, "Title Here"],
-      ["Good Event 4", 0.04, "Title Here"],
-      ["Good Event 5", 0.25, "Title Here"],
-      ["Good Event 6", 0.02, "Title Here"],
-      ["Good Event 7", 0.01, "Title Here"]
->>>>>>> origin/new_branch
     ];
 
     // Bad events: <Text> <Type> <Percentage to change> <Title>
     var badEvents = [
-<<<<<<< HEAD
       ["I got an A- for my last test, thanks to my 3 math tuition teachers.", 1, 0.05, "Private tuition"],
       ["My dad invited the CEO of POBC Bank over for dinner - he offered me an internship! ", 1, 0.04, "Bank Internship"],
       ["Went to study abroad in the UK and learnt a lot from the experience!", 1, 0.03, "Exchange program"],
@@ -88,18 +77,6 @@
       ["My parents are away to visit my grandma in the hospital - gotta prepare meals for my younger siblings.", 2, 0.03, "Home Away"],
       ["My boss just called me to take over someone's shift - I have a test tomorrow, but I really need the money...", 2, 0.02, "Money or Not?"],
       ["My parents have been arguing non-stop...I can't concentrate at all.", 2, 0.01, "Financial Woes"]
-=======
-      ["Bad Event 1", 1, 0.05, "Title Here"],
-      ["Bad Event 2", 1, 0.04, "Title Here"],
-      ["Bad Event 3", 1, 0.03, "Title Here"],
-      ["Bad Event 4", 1, 0.02, "Title Here"],
-      ["Bad Event 5", 1, 0.01, "Title Here"],
-      ["Bad Event 6", 2, 0.05, "Title Here"],
-      ["Bad Event 7", 2, 0.04, "Title Here"],
-      ["Bad Event 8", 2, 0.03, "Title Here"],
-      ["Bad Event 9", 2, 0.02, "Title Here"],
-      ["Bad Event 10", 2, 0.01, "Title Here"]
->>>>>>> origin/new_branch
     ]; // 1 = add to rich, 2 = deduct from poor
 
     // Maximum Variables
@@ -109,11 +86,7 @@
     var maxUpgradePurchases = 99;
 
     // Game Random Event Balancing variables
-<<<<<<< HEAD
     var idealDiff = -15000; // further decrease this to increase difficulty
-=======
-    var idealDiff = -25000; // further decrease this to increase difficulty
->>>>>>> origin/new_branch
     var maxDiff = maxScore;
     var goodRange = Math.abs(0 - maxDiff - idealDiff);
     var badRange = Math.abs(maxDiff * 2) - goodRange;
