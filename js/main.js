@@ -304,35 +304,51 @@
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Random event functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    function displayEvent(kid, valence, text) {
-
+    function displayEvent(kid, text, change, score) {
+        var displayDOM;
+        if (kid == "poorkid") {
+            displayDOM = $('#poor-event');
+        } else if (kid == "richkid") {
+            displayDOM = $('#rich-event');
+        } else {
+            console.log("Displaying invalid kids event");
+        }
+        var textToDisplay = text + " " + change + score + "points.";
+        displayDOM.text(textToDisplay);
     }
 
     function triggerAnyGoodEvent() {
         console.log("Triggering a good event");
         var eventNumberToTrigger = Math.floor(Math.random() * goodEvents.length);
-        addScore(score * goodEvents[eventNumberToTrigger][1]);
-        displayEvent("poorkid", "good", goodEvents[eventNumberToTrigger][0]);
+        var scoreToAdd = Math.floor(score * goodEvents[eventNumberToTrigger][1]);
+        addScore(scoreToAdd);
+        displayEvent("poorkid", goodEvents[eventNumberToTrigger][0], "+", scoreToAdd);
     }
 
     function triggerAnyBadEvent() {
-        console.log("Triggering a bad event");
-        var eventNumberToTrigger = Math.floor(Math.random() * badEvents.length);
-        var eventType = badEvents[eventNumberToTrigger][1];
-        switch (eventType) {
-            case 1: // event is to add score to the rich kid
-                addScoreForRich(badEvents[eventNumberToTrigger][2]);
-                displayEvent("richkid", "bad", badEvents[eventNumberToTrigger][0]);
-                break;
-            case 2: // event is to deduct score from poor kid
-                deductScore(badEvents[eventNumberToTrigger][2]);
-                displayEvent("poorkid", "bad", badEvents[eventNumberToTrigger][0]);
-                break;
-            default:
-                console.log("Invalid event type");
-                break;
-        }
+        if (score > (maxScore / 5)) {
+            console.log("Triggering a bad event");
+            var eventNumberToTrigger = Math.floor(Math.random() * badEvents.length);
+            var eventType = badEvents[eventNumberToTrigger][1];
+            var eventText = badEvents[eventNumberToTrigger][0];
+            var scoreToChange = 0;
 
+            switch (eventType) {
+                case 1: // event is to add score to the rich kid
+                    scoreToChange = Math.floor(rScore * badEvents[eventNumberToTrigger][2]);
+                    addScoreForRich(scoreToChange);
+                    displayEvent("richkid", eventText, "+", scoreToChange);
+                    break;
+                case 2: // event is to deduct score from poor kid
+                    scoreToChange = Math.floor(score * badEvents[eventNumberToTrigger][2]);
+                    deductScore(scoreToChange);
+                    displayEvent("poorkid", eventText, "-", scoreToChange);
+                    break;
+                default:
+                    console.log("Invalid event type");
+                    break;
+            }
+        }
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *

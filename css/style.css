@@ -154,6 +154,10 @@ html, body {
     margin: 25px;
 }
 
+.sprite img {
+    margin-top: 77px;
+}
+
 .poor {
     background: #F8E1DD;
     height: 100%;
@@ -379,6 +383,18 @@ html, body {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
 }
+
+.event-display {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-top: -436px;
+}
+
+#poor-event, #rich-event {
+    /*display: none;*/
+}
+
 
 .item-cell:hover:after{
     background: #303030;
