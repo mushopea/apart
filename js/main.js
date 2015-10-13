@@ -419,44 +419,41 @@
             case 10:
                 thingsToBuy = [4, 2, 3, 3, 1, 1, 3];
                 break;
-            case 30:
+            case 40:
                 thingsToBuy = [3, 3, 2, 4, 2, 1];
                 break;
-            case 50:
+            case 70:
                 thingsToBuy = [1, 2, 2, 3, 4];
                 break;
-            case 70:
+            case 100:
                 thingsToBuy = [4, 3, 2, 1, 1];
                 break;
-            case 90:
+            case 130:
                 thingsToBuy = [1, 2, 3, 2, 1];
                 break;
-            case 110:
+            case 150:
                 thingsToBuy = [3, 2, 2, 1, 1];
                 break;
-            case 130:
+            case 170:
                 thingsToBuy = [1, 3, 2, 1, 2];
                 break;
-            case 150:
+            case 190:
                 thingsToBuy = [2, 1, 1, 1, 1];
                 break;
-            case 170:
+            case 210:
                 thingsToBuy = [4, 1, 1, 1, 1];
                 break;
-            case 190:
+            case 230:
                 thingsToBuy = [3, 2, 4, 1, 3];
                 break;
-            case 210:
+            case 250:
                 thingsToBuy = [3, 4, 3, 4, 4];
                 break;
-            case 230:
+            case 260:
                 thingsToBuy = [2, 3, 2, 4, 2];
                 break;
-            case 250:
-                thingsToBuy = [3, 2, 2, 3, 3];
-                break;
             case 270:
-                thingsToBuy = [4, 3, 3, 3, 4];
+                thingsToBuy = [3, 2, 2, 3, 3];
                 break;
             case 290:
                 thingsToBuy = [4, 4, 4, 4, 4];
