@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    font: 14px Europa, Avenir;
+    font: 13px Europa, Avenir;
 }
 
 .grey {
@@ -20,7 +20,6 @@ html, body {
 }
 
 .main-container {
-    height: 100%;
     width: 100%;
     text-align: center;
     display: inline-block;
@@ -153,6 +152,10 @@ html, body {
 .sprite-container img {
     width: 30%;
     margin: 25px;
+}
+
+.sprite img {
+    margin-top: 77px;
 }
 
 .poor {
@@ -381,6 +384,57 @@ html, body {
     filter: grayscale(100%);
 }
 
+.event-display {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-top: -436px;
+}
+
+.event-container {
+    background-color: white;
+    width: 80%;
+    padding: 10px;
+    margin: 0 auto;
+    display: inline-block;
+    font-size: 1.1em;
+    border-radius: 11px;
+}
+
+.event-title {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+#rich-event-title {
+    color: rgb(236, 146, 29);
+}
+
+#poor-event-title {
+    color: royalblue;
+}
+
+.event-points {
+    font-weight: 700;
+    display: inline;
+}
+
+.event-points.add {
+    color: mediumseagreen;
+}
+
+.event-points.minus {
+    color: indianred;
+}
+
+#poor-event, #rich-event {
+    display: none;
+}
+
+.event-text {
+}
+
+
 .item-cell:hover:after{
     background: #303030;
     border-radius: 5px;
@@ -395,19 +449,31 @@ html, body {
 
 @media screen and (max-width: 1280px){
     body{
-        -moz-transform: scale(0.8, 0.8);
-        -webkit-transform: scale(0.8, 0.8);
-        -ms-transform: scale(0.8, 0.8);
-        -o-transform: scale(0.8, 0.8);
-        transform: scale(0.8, 0.8);
+        -moz-transform: scale(0.9, 0.9);
+        -webkit-transform: scale(0.9, 0.9);
+        -ms-transform: scale(0.9, 0.9);
+        -o-transform: scale(0.9, 0.9);
+        transform: scale(0.9, 0.9);
+        font-size: 13px;
     }
 }
 @media screen and (max-height: 900px){
     body{
+        -moz-transform: scale(0.9, 0.9);
+        -webkit-transform: scale(0.9, 0.9);
+        -ms-transform: scale(0.9, 0.9);
+        -o-transform: scale(0.9, 0.9);
+        transform: scale(0.9, 0.9);
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 1230px){
+    body {
         -moz-transform: scale(0.8, 0.8);
         -webkit-transform: scale(0.8, 0.8);
         -ms-transform: scale(0.8, 0.8);
         -o-transform: scale(0.8, 0.8);
         transform: scale(0.8, 0.8);
+        font-size: 13px;
     }
 }

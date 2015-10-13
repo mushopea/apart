@@ -40,15 +40,15 @@
                     <div class="stats">
                         <div class="col-xs-4">
                             <div class="stat-circle">
-                                <div id="poor-player-score" class="stat-text">0</div>
-                            </div>
-                            <div class="stat-description">Score</div>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="stat-circle">
                                 <div id="poor-player-gold" class="stat-text">0</div>
                             </div>
                             <div class="stat-description">Gold</div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="stat-circle">
+                                <div id="poor-player-score" class="stat-text">0</div>
+                            </div>
+                            <div class="stat-description">Score</div>
                         </div>
                         <div class="col-xs-4">
                             <div class="stat-circle">
@@ -61,6 +61,13 @@
                 <div class="sprite-container">
                     <div class="sprite">
                         <img src="img/poor.png">
+                    </div>
+                    <div class="event-display" id="poor-event">
+                        <div class="event-container">
+                            <div class="event-title" id="poor-event-title"></div>
+                            <div class="event-text" id="poor-event-text"></div>
+                            <span class="event-points"></span>
+                        </div>
                     </div>
                     <div id="clickgold" class="clickable" title="Work for +1 gold">
                         <img src="img/clickgold.png">
@@ -80,15 +87,15 @@
                     <div class="stats">
                         <div class="col-xs-4">
                             <div class="stat-circle">
-                                <div id="rich-player-score" class="stat-text">0</div>
-                            </div>
-                            <div class="stat-description">Score</div>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="stat-circle">
                                 <div id="rich-player-gold" class="stat-text">0</div>
                             </div>
                             <div class="stat-description">Gold</div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="stat-circle">
+                                <div id="rich-player-score" class="stat-text">0</div>
+                            </div>
+                            <div class="stat-description">Score</div>
                         </div>
                         <div class="col-xs-4">
                             <div class="stat-circle">
@@ -104,7 +111,16 @@
                             <ul class="message-list"></ul>
                         </div>
                     </div>
-                    <img src="img/rich.png">
+                    <div class="sprite">
+                        <img src="img/rich.png">
+                    </div>
+                    <div class="event-display" id="rich-event">
+                        <div class="event-container">
+                            <div class="event-title" id="rich-event-title"></div>
+                            <div class="event-text" id="rich-event-text"></div>
+                            <div class="event-points"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
