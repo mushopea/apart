@@ -84,7 +84,7 @@
     var maxUpgradePurchases = 99;
 
     // Game Random Event Balancing variables
-    var idealDiff = -2500;
+    var idealDiff = -15000;
     var maxDiff = maxScore;
     var goodRange = Math.abs(0 - maxDiff - idealDiff);
     var badRange = Math.abs(maxDiff * 2) - goodRange;
