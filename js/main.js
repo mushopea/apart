@@ -54,27 +54,29 @@
 
     var statuses = ["You are studying to improve your score.", "You are working to earn some gold."];
 
+    // Good events: <Text> <Percentage to change> <Title>
     var goodEvents = [
-      ["Good Event 1", 0.1],
-      ["Good Event 2", 0.07],
-      ["Good Event 3", 0.05],
-      ["Good Event 4", 0.04],
-      ["Good Event 5", 0.25],
-      ["Good Event 6", 0.02],
-      ["Good Event 7", 0.01],
+      ["Good Event 1", 0.1, "Title Here"],
+      ["Good Event 2", 0.07, "Title Here"],
+      ["Good Event 3", 0.05, "Title Here"],
+      ["Good Event 4", 0.04, "Title Here"],
+      ["Good Event 5", 0.25, "Title Here"],
+      ["Good Event 6", 0.02, "Title Here"],
+      ["Good Event 7", 0.01, "Title Here"]
     ];
 
+    // Bad events: <Text> <Type> <Percentage to change> <Title>
     var badEvents = [
-      ["Bad Event 1", 1, 0.05],
-      ["Bad Event 2", 1, 0.04],
-      ["Bad Event 3", 1, 0.03],
-      ["Bad Event 4", 1, 0.02],
-      ["Bad Event 5", 1, 0.01],
-      ["Bad Event 6", 2, 0.05],
-      ["Bad Event 7", 2, 0.04],
-      ["Bad Event 8", 2, 0.03],
-      ["Bad Event 9", 2, 0.02],
-      ["Bad Event 10", 2, 0.01]
+      ["Bad Event 1", 1, 0.05, "Title Here"],
+      ["Bad Event 2", 1, 0.04, "Title Here"],
+      ["Bad Event 3", 1, 0.03, "Title Here"],
+      ["Bad Event 4", 1, 0.02, "Title Here"],
+      ["Bad Event 5", 1, 0.01, "Title Here"],
+      ["Bad Event 6", 2, 0.05, "Title Here"],
+      ["Bad Event 7", 2, 0.04, "Title Here"],
+      ["Bad Event 8", 2, 0.03, "Title Here"],
+      ["Bad Event 9", 2, 0.02, "Title Here"],
+      ["Bad Event 10", 2, 0.01, "Title Here"]
     ]; // 1 = add to rich, 2 = deduct from poor
 
     // Maximum Variables
@@ -304,7 +306,7 @@
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Random event functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    function displayEvent(kid, text, change, score) {
+    function displayEvent(kid, text, change, score, title) {
         var displayDOM;
         if (kid == "poorkid") {
             displayDOM = $('#poor-event');
@@ -322,7 +324,7 @@
         var eventNumberToTrigger = Math.floor(Math.random() * goodEvents.length);
         var scoreToAdd = Math.floor(score * goodEvents[eventNumberToTrigger][1]);
         addScore(scoreToAdd);
-        displayEvent("poorkid", goodEvents[eventNumberToTrigger][0], "+", scoreToAdd);
+        displayEvent("poorkid", goodEvents[eventNumberToTrigger][0], "+", scoreToAdd, goodEvents[eventNumberToTrigger][2]);
     }
 
     function triggerAnyBadEvent() {
@@ -337,12 +339,12 @@
                 case 1: // event is to add score to the rich kid
                     scoreToChange = Math.floor(rScore * badEvents[eventNumberToTrigger][2]);
                     addScoreForRich(scoreToChange);
-                    displayEvent("richkid", eventText, "+", scoreToChange);
+                    displayEvent("richkid", eventText, "+", scoreToChange, badEvents[eventNumberToTrigger][3]);
                     break;
                 case 2: // event is to deduct score from poor kid
                     scoreToChange = Math.floor(score * badEvents[eventNumberToTrigger][2]);
                     deductScore(scoreToChange);
-                    displayEvent("poorkid", eventText, "-", scoreToChange);
+                    displayEvent("poorkid", eventText, "-", scoreToChange, badEvents[eventNumberToTrigger][3]);
                     break;
                 default:
                     console.log("Invalid event type");

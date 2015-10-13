@@ -391,8 +391,46 @@ html, body {
     margin-top: -436px;
 }
 
+.event-container {
+    background-color: white;
+    width: 80%;
+    padding: 10px;
+    margin: 0 auto;
+    display: inline-block;
+    font-size: 1.1em;
+    border-radius: 11px;
+}
+
+.event-title {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+#rich-event-title {
+    color: rgb(236, 146, 29);
+}
+
+#poor-event-title {
+    color: royalblue;
+}
+
+.event-points {
+    font-weight: 700;
+}
+
+.event-points.add {
+    color: mediumseagreen;
+}
+
+.event-points.minus {
+    color: indianred;
+}
+
 #poor-event, #rich-event {
     /*display: none;*/
+}
+
+.event-text {
 }
 
 
