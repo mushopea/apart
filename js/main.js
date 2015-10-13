@@ -313,8 +313,8 @@
         } else {
             console.log("Displaying invalid kids event");
         }
-        var textToDisplay = text + " " + change + score + "points.";
-        displayDOM.text(textToDisplay);
+        var textToDisplay = text + "<br>" + change + score + " points.";
+        displayDOM.html(textToDisplay);
     }
 
     function triggerAnyGoodEvent() {
