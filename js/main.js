@@ -149,7 +149,7 @@
     }
 
     function addScore(value) {
-        if (gameHasStarted) {
+        if ((gameHasStarted) && (mode == "studying")) {
             score += value;
             if (score > maxScore) {
                 score = maxScore;
