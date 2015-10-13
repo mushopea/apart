@@ -427,7 +427,7 @@ html, body {
 }
 
 #poor-event, #rich-event {
-    /*display: none;*/
+    display: none;
 }
 
 .event-text {

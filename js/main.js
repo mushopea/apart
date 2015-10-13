@@ -86,7 +86,7 @@
     var maxUpgradePurchases = 99;
 
     // Game Random Event Balancing variables
-    var idealDiff = -15000;
+    var idealDiff = -25000; // further decrease this to increase difficulty
     var maxDiff = maxScore;
     var goodRange = Math.abs(0 - maxDiff - idealDiff);
     var badRange = Math.abs(maxDiff * 2) - goodRange;
@@ -152,6 +152,16 @@
 
     function addScore(value) {
         if ((gameHasStarted) && (mode == "studying")) {
+            score += value;
+            if (score > maxScore) {
+                score = maxScore;
+            }
+        }
+        updateDisplay();
+    }
+
+    function addScoreFromEvent(value) {
+        if (gameHasStarted) {
             score += value;
             if (score > maxScore) {
                 score = maxScore;
@@ -315,15 +325,32 @@
         } else {
             console.log("Displaying invalid kids event");
         }
-        var textToDisplay = text + "<br>" + change + score + " points.";
-        displayDOM.html(textToDisplay);
+        var textDOM = displayDOM.find(".event-text");
+        var titleDOM = displayDOM.find(".event-title");
+        var pointsDOM = displayDOM.find(".event-points");
+
+        // set color of points DOM
+        if (change == "+") {
+            pointsDOM.addClass("add");
+            pointsDOM.removeClass("minus");
+        } else if (change == "-") {
+            pointsDOM.addClass("minus");
+            pointsDOM.removeClass("add");
+        }
+
+        // set html
+        textDOM.html(text);
+        titleDOM.html(title);
+        pointsDOM.html(" " + change + score + " points");
+
+        displayDOM.fadeIn('fast').delay(2000).fadeOut('fast');
     }
 
     function triggerAnyGoodEvent() {
         console.log("Triggering a good event");
         var eventNumberToTrigger = Math.floor(Math.random() * goodEvents.length);
         var scoreToAdd = Math.floor(score * goodEvents[eventNumberToTrigger][1]);
-        addScore(scoreToAdd);
+        addScoreFromEvent(scoreToAdd);
         displayEvent("poorkid", goodEvents[eventNumberToTrigger][0], "+", scoreToAdd, goodEvents[eventNumberToTrigger][2]);
     }
 
