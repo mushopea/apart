@@ -158,6 +158,16 @@
         updateDisplay();
     }
 
+    function deductScore(value) {
+        if (gameHasStarted) {
+            score -= value;
+            if (score < 0) {
+                score = 0;
+            }
+        }
+        updateDisplay();
+    }
+
     function addUpgrade(upgradeNumber) {
         if (upgradeQuantities[upgradeNumber] < maxUpgradePurchases) {
             upgradeQuantities[upgradeNumber]++;
@@ -292,17 +302,36 @@
 
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // Event triggering functions
+    // Random event functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    function displayEvent(kid, valence, text) {
+
+    }
+
     function triggerAnyGoodEvent() {
         console.log("Triggering a good event");
         var eventNumberToTrigger = Math.floor(Math.random() * goodEvents.length);
-
+        addScore(score * goodEvents[eventNumberToTrigger][1]);
+        displayEvent("poorkid", "good", goodEvents[eventNumberToTrigger][0]);
     }
 
     function triggerAnyBadEvent() {
         console.log("Triggering a bad event");
         var eventNumberToTrigger = Math.floor(Math.random() * badEvents.length);
+        var eventType = badEvents[eventNumberToTrigger][1];
+        switch (eventType) {
+            case 1: // event is to add score to the rich kid
+                addScoreForRich(badEvents[eventNumberToTrigger][2]);
+                displayEvent("richkid", "bad", badEvents[eventNumberToTrigger][0]);
+                break;
+            case 2: // event is to deduct score from poor kid
+                deductScore(badEvents[eventNumberToTrigger][2]);
+                displayEvent("poorkid", "bad", badEvents[eventNumberToTrigger][0]);
+                break;
+            default:
+                console.log("Invalid event type");
+                break;
+        }
 
     }
 
