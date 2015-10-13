@@ -52,45 +52,13 @@
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
     var scoresForGrades = [35000, 45000, 50000, 55000, 60000, 65000, 70000, 85000, 99999999];
 
-    var statuses = ["You are studying to improve your score.", "You are working to earn some gold."];
-
-    // Good events: <Text> <Percentage to change> <Title>
-    var goodEvents = [
-      ["My siblings are sleeping over at my aunt's - I finally have the room to myself! ", 0.1, "Home Alone!"],
-      ["My brother is away on a camping trip, I can finally concentrate! ", 0.07, "Peace and Quiet"],
-      ["Dad is taking an off day today, so I don't have to help him at the store - more time to study! ", 0.05, "No Work Today!"],
-      ["My parents finally replaced the spoilt fan - no more studying in the stuffy heat for me!", 0.04, "Beat the Heat"],
-      ["My friend invites me to study at his air-conditioned, super huge room - yay!", 0.25, "Study Buddy"],
-      ["My financial aid application got approved - I can work one less job!", 0.02, "Drop the job"],
-      ["I play rock-paper-scissors with my siblings to see whoÅfll be doing the chores for the week - I win! Hah!  ", 0.01, "Rock-paper-scissors"]
-    ];
-
-    // Bad events: <Text> <Type> <Percentage to change> <Title>
-    var badEvents = [
-      ["I got an A- for my last test, thanks to my 3 math tuition teachers.", 1, 0.05, "Private tuition"],
-      ["My dad invited the CEO of POBC Bank over for dinner - he offered me an internship! ", 1, 0.04, "Bank Internship"],
-      ["Went to study abroad in the UK and learnt a lot from the experience!", 1, 0.03, "Exchange program"],
-      ["My dad's company gave him 2 Macbook Pros. He said I could have one!", 1, 0.02, "Company laptop"],
-      ["I was awarded a prestigious scholarship from my dad's company. All thanks to my hard work!", 1, 0.01, "Company Scholarship"],
-      ["My dad sprained his leg - it's time for me to help out at his store.", 2, 0.05, "Mini Helper"],
-      ["I'm down with the flu, but I really can't afford to visit the clinic - there goes my exam tomorrow.", 2, 0.04, "Flu Bug"],
-      ["My parents are away to visit my grandma in the hospital - gotta prepare meals for my younger siblings.", 2, 0.03, "Home Away"],
-      ["My boss just called me to take over someone's shift - I have a test tomorrow, but I really need the money...", 2, 0.02, "Money or Not?"],
-      ["My parents have been arguing non-stop...I can't concentrate at all.", 2, 0.01, "Financial Woes"]
-    ]; // 1 = add to rich, 2 = deduct from poor
+    var statuses = ['You are studying to improve your score.', 'You are working to earn some gold.'];
 
     // Maximum Variables
     var maxGold = 900;
     var maxScore = 100000;
     var maxScoreRate = 900;
     var maxUpgradePurchases = 99;
-
-    // Game Random Event Balancing variables
-    var idealDiff = -15000; // further decrease this to increase difficulty
-    var maxDiff = maxScore;
-    var goodRange = Math.abs(0 - maxDiff - idealDiff);
-    var badRange = Math.abs(maxDiff * 2) - goodRange;
-
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Utility functions
@@ -151,30 +119,10 @@
     }
 
     function addScore(value) {
-        if ((gameHasStarted) && (mode == "studying")) {
-            score += value;
-            if (score > maxScore) {
-                score = maxScore;
-            }
-        }
-        updateDisplay();
-    }
-
-    function addScoreFromEvent(value) {
         if (gameHasStarted) {
             score += value;
             if (score > maxScore) {
                 score = maxScore;
-            }
-        }
-        updateDisplay();
-    }
-
-    function deductScore(value) {
-        if (gameHasStarted) {
-            score -= value;
-            if (score < 0) {
-                score = 0;
             }
         }
         updateDisplay();
@@ -314,74 +262,6 @@
 
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // Random event functions
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    function displayEvent(kid, text, change, score, title) {
-        var displayDOM;
-        if (kid == "poorkid") {
-            displayDOM = $('#poor-event');
-        } else if (kid == "richkid") {
-            displayDOM = $('#rich-event');
-        } else {
-            console.log("Displaying invalid kids event");
-        }
-        var textDOM = displayDOM.find(".event-text");
-        var titleDOM = displayDOM.find(".event-title");
-        var pointsDOM = displayDOM.find(".event-points");
-
-        // set color of points DOM
-        if (change == "+") {
-            pointsDOM.addClass("add");
-            pointsDOM.removeClass("minus");
-        } else if (change == "-") {
-            pointsDOM.addClass("minus");
-            pointsDOM.removeClass("add");
-        }
-
-        // set html
-        textDOM.html(text);
-        titleDOM.html(title);
-        pointsDOM.html(" " + change + score + " points");
-        console.log(score);
-
-        displayDOM.fadeIn('fast').delay(2000).fadeOut('fast');
-    }
-
-    function triggerAnyGoodEvent() {
-        console.log("Triggering a good event");
-        var eventNumberToTrigger = Math.floor(Math.random() * goodEvents.length);
-        var scoreToAdd = Math.floor(score * goodEvents[eventNumberToTrigger][1]);
-        addScoreFromEvent(scoreToAdd);
-        displayEvent("poorkid", goodEvents[eventNumberToTrigger][0], "+", scoreToAdd, goodEvents[eventNumberToTrigger][2]);
-    }
-
-    function triggerAnyBadEvent() {
-        if (score > (maxScore / 100)) {
-            console.log("Triggering a bad event");
-            var eventNumberToTrigger = Math.floor(Math.random() * badEvents.length);
-            var eventType = badEvents[eventNumberToTrigger][1];
-            var eventText = badEvents[eventNumberToTrigger][0];
-            var scoreToChange = 0;
-
-            switch (eventType) {
-                case 1: // event is to add score to the rich kid
-                    scoreToChange = Math.floor(rScore * badEvents[eventNumberToTrigger][2]);
-                    addScoreForRich(scoreToChange);
-                    displayEvent("richkid", eventText, "+", scoreToChange, badEvents[eventNumberToTrigger][3]);
-                    break;
-                case 2: // event is to deduct score from poor kid
-                    scoreToChange = Math.floor(score * badEvents[eventNumberToTrigger][2]);
-                    deductScore(scoreToChange);
-                    displayEvent("poorkid", eventText, "-", scoreToChange, badEvents[eventNumberToTrigger][3]);
-                    break;
-                default:
-                    console.log("Invalid event type");
-                    break;
-            }
-        }
-    }
-
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Click functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     function clickGold() {
@@ -490,21 +370,7 @@
 
     // Trigger any random event
     function updateRandomEvent() {
-        var randomNo = 999999;
-        var currentDiff = score - rScore; // difference between poor and rich score
-        var degreeOfDifference = Math.abs(currentDiff - idealDiff);
-
-        if (currentDiff < idealDiff) { // User is lagging behind a lot, randomly trigger good events
-            randomNo = (Math.random() * (goodRange - 1)) + 1;
-            if (randomNo <= degreeOfDifference) {
-                triggerAnyGoodEvent();
-            }
-        } else if (currentDiff > idealDiff) { // User is catching up too much, quick put him down! Muahaha
-            randomNo = (Math.random() * (badRange - 1)) + 1;
-            if (randomNo <= degreeOfDifference) {
-                triggerAnyBadEvent();
-            }
-        }
+        console.log('random event for this second');
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
