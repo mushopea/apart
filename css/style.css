@@ -305,6 +305,11 @@ html, body {
     display: block;
 }
 
+.disabled-stat {
+    background: #979797;
+    color: #d7d7d7;
+}
+
 .item-screen {
     text-align: center;
 }
