@@ -15,7 +15,7 @@
     var scoreRate = 0.0; // change on event
     // gold
     var gold = 0; // change every second
-    var clickGoldRate = 2;
+    var clickGoldRate = 1;
     // boost
     var currentBoost = null; // change every second, set on event
     var currentBoostDuration = 0; // change every second, set on event
@@ -41,11 +41,11 @@
 
     var upgradeNames = ['Stress Balloons', 'Stationery', 'Practice Papers', 'Guidebook', 'Tuition'];
     var upgradeCosts = [5, 10, 15, 25, 40];
-    var upgradeRates = [1, 2, 5, 10, 20];
+    var upgradeRates = [1, 2, 5, 7, 10];
 
     var boostNames = ['Water', 'Milo', 'Coffee', 'Red Bull', 'Chicken Roast'];
     var boostCosts = [1, 3, 5, 7, 10];
-    var boostRates = [10, 30, 50, 70, 90];
+    var boostRates = [5, 10, 15, 20, 25];
     var boostDurations = [5, 5, 5, 5, 10];
 
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
@@ -427,41 +427,44 @@
             case 10:
                 thingsToBuy = [4, 2, 3, 3, 1, 1, 3];
                 break;
-            case 40:
-                thingsToBuy = [3, 3, 2, 4, 2, 1];
+            case 30:
+                thingsToBuy = [3, 3, 3, 4, 3, 4];
+                break;
+            case 50:
+                thingsToBuy = [2, 3, 4, 3, 4];
                 break;
             case 70:
-                thingsToBuy = [1, 2, 2, 3, 4];
+                thingsToBuy = [4, 3, 3, 4, 4];
                 break;
-            case 100:
-                thingsToBuy = [4, 3, 2, 1, 1];
+            case 90:
+                thingsToBuy = [3, 2, 3, 4, 4];
+                break;
+            case 110:
+                thingsToBuy = [3, 3, 3, 4, 4];
                 break;
             case 130:
-                thingsToBuy = [1, 2, 3, 2, 1];
+                thingsToBuy = [4, 3, 2, 2, 4];
                 break;
             case 150:
-                thingsToBuy = [3, 2, 2, 1, 1];
+                thingsToBuy = [4, 3, 2, 3, 4];
                 break;
             case 170:
-                thingsToBuy = [1, 3, 2, 1, 2];
-                break;
-            case 190:
-                thingsToBuy = [2, 1, 1, 1, 1];
-                break;
-            case 210:
                 thingsToBuy = [4, 1, 1, 1, 1];
                 break;
-            case 230:
+            case 190:
                 thingsToBuy = [3, 2, 4, 1, 3];
                 break;
-            case 250:
-                thingsToBuy = [3, 4, 3, 4, 4];
+            case 210:
+                thingsToBuy = [2, 3, 3, 2, 4];
                 break;
-            case 260:
-                thingsToBuy = [2, 3, 2, 4, 2];
+            case 230:
+                thingsToBuy = [2, 1, 2, 2, 2];
+                break;
+            case 250:
+                thingsToBuy = [3, 2, 2, 3, 3];
                 break;
             case 270:
-                thingsToBuy = [3, 2, 2, 3, 3];
+                thingsToBuy = [4, 4, 4, 4, 4];
                 break;
             case 290:
                 thingsToBuy = [4, 4, 4, 4, 4];
