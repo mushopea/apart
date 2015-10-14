@@ -341,10 +341,11 @@
         // set html
         textDOM.html(text);
         titleDOM.html(title);
-        pointsDOM.html(" " + change + score + " points");
-        console.log(score);
+        if (score > 0) {
+            pointsDOM.html(" " + change + score + " points");
+        }
 
-        displayDOM.fadeIn('fast').delay(2000).fadeOut('fast');
+        displayDOM.fadeIn('fast').delay(4000).fadeOut('fast');
     }
 
     function triggerAnyGoodEvent() {
