@@ -62,7 +62,7 @@
       ["My parents finally replaced the spoilt fan - no more studying in the stuffy heat for me!", 0.04, "Beat the Heat"],
       ["My friend invites me to study at his air-conditioned, super huge room - yay!", 0.25, "Study Buddy"],
       ["My financial aid application got approved - I can work one less job!", 0.02, "Drop the job"],
-      ["I play rock-paper-scissors with my siblings to see whoÅfll be doing the chores for the week - I win! Hah!  ", 0.01, "Rock-paper-scissors"]
+      ["I play rock-paper-scissors with my siblings to see who'll be doing the chores for the week - I win! Hah!  ", 0.01, "Rock-paper-scissors"]
     ];
 
     // Bad events: <Text> <Type> <Percentage to change> <Title>
