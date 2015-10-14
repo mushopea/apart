@@ -76,6 +76,11 @@ html, body {
     height: 608px;
     position: relative;
     width: 100%;
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .race-line-container {
@@ -101,6 +106,13 @@ html, body {
 
 .race img {
     width: 50px;
+}
+
+#poor-race, #rich-race {
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 #rich-race {
@@ -332,6 +344,11 @@ html, body {
     text-align: center;
     padding: 15px 0;
     margin: 0;
+
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
 }
 
 .item-cell:nth-child(odd) {
