@@ -13,10 +13,9 @@
     var score = 0; // change every second
     var grade = 'F9'; // change every second
     var scoreRate = 0.0; // change on event
-    var clickScoreRate = 10;
     // gold
     var gold = 0; // change every second
-    var clickGoldRate = 2;
+    var clickGoldRate = 1;
     // boost
     var currentBoost = null; // change every second, set on event
     var currentBoostDuration = 0; // change every second, set on event
@@ -42,11 +41,11 @@
 
     var upgradeNames = ['Stress Balloons', 'Stationery', 'Practice Papers', 'Guidebook', 'Tuition'];
     var upgradeCosts = [5, 10, 15, 25, 40];
-    var upgradeRates = [1, 2, 5, 10, 20];
+    var upgradeRates = [1, 2, 5, 7, 10];
 
     var boostNames = ['Water', 'Milo', 'Coffee', 'Red Bull', 'Chicken Roast'];
     var boostCosts = [1, 3, 5, 7, 10];
-    var boostRates = [10, 30, 50, 70, 90];
+    var boostRates = [5, 10, 15, 20, 25];
     var boostDurations = [5, 5, 5, 5, 10];
 
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
@@ -125,6 +124,9 @@
         if (gameHasStarted) {
             scoreRate += value;
             if (scoreRate > maxScoreRate) { scoreRate = maxScoreRate; }
+
+            // update display
+            $("#clickscore").attr('title', 'Study for +' + scoreRate +  ' score');
         }
     }
 
@@ -197,6 +199,10 @@
         // add the score rate
         rate = boostRates[boostNumber];
         addScoreRate(rate);
+
+        // update display
+        $(String('#boost-' + boostNumber)).find(".item-active-boost").html(boostDurations[boostNumber] + ' s left');
+        updateDisplay();
     }
 
     function deductBoost() {
@@ -210,6 +216,7 @@
                 $(upgradeDOM).find(".item-active-boost").html('<br>');
             }
         }
+        updateDisplay();
     }
 
 
@@ -231,7 +238,7 @@
 
     function buyBoost(itemNumber) {
         // if the player has enough gold
-        if (gold >= boostCosts[itemNumber]) {
+        if ((gold >= boostCosts[itemNumber]) && (currentBoostDuration == 0)) {
             // buy the boost
             addBoost(itemNumber);
             deductGold(boostCosts[itemNumber]);
@@ -341,10 +348,11 @@
         // set html
         textDOM.html(text);
         titleDOM.html(title);
-        pointsDOM.html(" " + change + score + " points");
-        console.log(score);
+        if (score > 0) {
+            pointsDOM.html(" " + change + score + " points");
+        }
 
-        displayDOM.fadeIn('fast').delay(2000).fadeOut('fast');
+        displayDOM.fadeIn('fast').delay(4000).fadeOut('fast');
     }
 
     function triggerAnyGoodEvent() {
@@ -404,7 +412,7 @@
             $("#clickgold").addClass("unclickable");
             $("#status").text(statuses[0]);
 
-            addScore(clickScoreRate);
+            addScore(scoreRate);
         }
     }
 
@@ -419,41 +427,44 @@
             case 10:
                 thingsToBuy = [4, 2, 3, 3, 1, 1, 3];
                 break;
-            case 40:
-                thingsToBuy = [3, 3, 2, 4, 2, 1];
+            case 30:
+                thingsToBuy = [3, 3, 3, 4, 3, 4];
+                break;
+            case 50:
+                thingsToBuy = [2, 3, 4, 3, 4];
                 break;
             case 70:
-                thingsToBuy = [1, 2, 2, 3, 4];
+                thingsToBuy = [4, 3, 3, 4, 4];
                 break;
-            case 100:
-                thingsToBuy = [4, 3, 2, 1, 1];
+            case 90:
+                thingsToBuy = [3, 2, 3, 4, 4];
+                break;
+            case 110:
+                thingsToBuy = [3, 3, 3, 4, 4];
                 break;
             case 130:
-                thingsToBuy = [1, 2, 3, 2, 1];
+                thingsToBuy = [4, 3, 2, 2, 4];
                 break;
             case 150:
-                thingsToBuy = [3, 2, 2, 1, 1];
+                thingsToBuy = [4, 3, 2, 3, 4];
                 break;
             case 170:
-                thingsToBuy = [1, 3, 2, 1, 2];
-                break;
-            case 190:
-                thingsToBuy = [2, 1, 1, 1, 1];
-                break;
-            case 210:
                 thingsToBuy = [4, 1, 1, 1, 1];
                 break;
-            case 230:
+            case 190:
                 thingsToBuy = [3, 2, 4, 1, 3];
                 break;
-            case 250:
-                thingsToBuy = [3, 4, 3, 4, 4];
+            case 210:
+                thingsToBuy = [2, 3, 3, 2, 4];
                 break;
-            case 260:
-                thingsToBuy = [2, 3, 2, 4, 2];
+            case 230:
+                thingsToBuy = [2, 1, 2, 2, 2];
+                break;
+            case 250:
+                thingsToBuy = [3, 2, 2, 3, 3];
                 break;
             case 270:
-                thingsToBuy = [3, 2, 2, 3, 3];
+                thingsToBuy = [4, 4, 4, 4, 4];
                 break;
             case 290:
                 thingsToBuy = [4, 4, 4, 4, 4];
@@ -481,7 +492,7 @@
             } else {
                 // update DOM with the countdown
                 var upgradeDOM = String('#boost-' + currentBoost);
-                $(upgradeDOM).find(".item-active-boost").html(currentBoostDuration + ' s left');
+                $(upgradeDOM).find(".item-active-boost").html((currentBoostDuration - 1) + ' s left');
                 // countdown boost activation
                 currentBoostDuration--;
             }
@@ -514,6 +525,7 @@
     // The following function greys out the items the player
     // cannot afford at the moment.
     function updateItemDisplay() {
+
         for (var i = 0; i < upgradeNames.length; i++) {
             if (gold >= upgradeCosts[i]) {
                 $("#upgrade-" + i).removeClass("unbuyable");
@@ -521,17 +533,32 @@
                 $("#upgrade-" + i).addClass("unbuyable");
             }
         }
-
-        for (var i = 0; i < boostNames.length; i++) {
-            if (gold >= boostCosts[i]) {
-                $("#boost-" + i).removeClass("unbuyable");
-            } else {
+        if (currentBoostDuration == 0) {
+            for (var i = 0; i < boostNames.length; i++) {
+                if ((gold >= boostCosts[i])) {
+                    $("#boost-" + i).removeClass("unbuyable");
+                } else {
+                    $("#boost-" + i).addClass("unbuyable");
+                }
+            }
+        } else {
+            for (var i = 0; i < boostNames.length; i++) {
                 $("#boost-" + i).addClass("unbuyable");
             }
         }
+
     }
 
     function updateStatsDisplay() {
+
+        if (mode == "working") {
+            $('.gold-stat-circle').removeClass("disabled-stat");
+            $('.score-stat-circle').addClass("disabled-stat");
+        } else if (mode == "studying") {
+            $('.gold-stat-circle').addClass("disabled-stat");
+            $('.score-stat-circle').removeClass("disabled-stat");
+        }
+
         document.querySelector('#poor-player-gold').textContent = gold;
         document.querySelector('#poor-player-score').textContent = round(score);
         document.querySelector('#poor-player-rate').textContent = '+' + round(scoreRate);
@@ -573,11 +600,6 @@
         updateRichKidStats();
         updateRichKidDisplay();
 
-        // passive score
-        if (mode == "studying") {
-            addScore(scoreRate);
-        }
-
         // displays
         updateDisplay();
         updateStatsDisplay();
@@ -599,6 +621,12 @@
             // startTimer() was called
             diff = duration - (((Date.now() - start) / 1000) | 0);
             secondsPassed++;
+			
+			// stop the game
+			if (secondsPassed > levelDuration) {
+				alert("Time's up! You scored " + score + " points, while Rich scored " + rScore + " points.");
+				window.location.reload();
+			}
 
             // does the same job as parseInt truncates the float
             minutes = (diff / 60) | 0;
@@ -639,7 +667,7 @@
         // upgrades
         for (var i = 0; i < upgradeNames.length; i++) {
             var upgradeNumber = i + 1;
-            html += '<div class="item-cell unbuyable" title="+' + upgradeRates[i] + ' score per second" id="upgrade-' + i + '">';
+            html += '<div class="item-cell unbuyable" title="+' + upgradeRates[i] + ' score per click" id="upgrade-' + i + '">';
             html += '<div class="item-img"><img src="img\/u' + upgradeNumber + '.png"><\/div>';
             html += '<div class="item-name">' + upgradeNames[i] + '<\/div>';
             html += '<div class="item-qty">Qty: ' + upgradeQuantities[i] + '<\/div>';
@@ -649,7 +677,7 @@
         // boosts
         for (var i = 0; i < upgradeNames.length; i++) {
             var boostNumber = i + 1;
-            html += '<div class="item-cell unbuyable" title="+' + boostRates[i] + ' score for ' + boostDurations[i] +  ' seconds" id="boost-' + i + '">';
+            html += '<div class="item-cell unbuyable" title="+' + boostRates[i] + ' score per click for ' + boostDurations[i] +  ' seconds" id="boost-' + i + '">';
             html += '<div class="item-img"><img src="img\/b' + boostNumber + '.png"><\/div>';
             html += '<div class="item-name">' + boostNames[i] + '<\/div>';
             html += '<div class="item-active-boost"><br></div>';
@@ -674,7 +702,7 @@
         });
 
         // set the tooltip value
-        clickScoreDOM.attr('title', 'Study for +' + clickScoreRate +  ' score');
+        clickScoreDOM.attr('title', 'Study for +' + scoreRate +  ' score');
         clickGoldDOM.attr('title', 'Work for +' + clickGoldRate +  ' gold');
 
         // set up the display DOM
@@ -690,11 +718,13 @@
     }
 
     function startGame() {
-        gameHasStarted = true;
-        $('.player-screen').removeClass("grey");
-        // DOM
-        var timeDisplay = document.querySelector('#time');
-        startTimer(levelDuration, timeDisplay);
+        if (!gameHasStarted) {
+            gameHasStarted = true;
+            $('.player-screen').removeClass("grey");
+            // DOM
+            var timeDisplay = document.querySelector('#time');
+            startTimer(levelDuration, timeDisplay);
+        }
     }
 
 
