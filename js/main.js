@@ -13,7 +13,6 @@
     var score = 0; // change every second
     var grade = 'F9'; // change every second
     var scoreRate = 0.0; // change on event
-    var clickScoreRate = 10;
     // gold
     var gold = 0; // change every second
     var clickGoldRate = 2;
@@ -125,6 +124,9 @@
         if (gameHasStarted) {
             scoreRate += value;
             if (scoreRate > maxScoreRate) { scoreRate = maxScoreRate; }
+
+            // update display
+            $("#clickscore").attr('title', 'Study for +' + scoreRate +  ' score');
         }
     }
 
@@ -405,7 +407,7 @@
             $("#clickgold").addClass("unclickable");
             $("#status").text(statuses[0]);
 
-            addScore(clickScoreRate);
+            addScore(scoreRate);
         }
     }
 
@@ -583,11 +585,6 @@
         updateRichKidStats();
         updateRichKidDisplay();
 
-        // passive score
-        if (mode == "studying") {
-            addScore(scoreRate);
-        }
-
         // displays
         updateDisplay();
         updateStatsDisplay();
@@ -690,7 +687,7 @@
         });
 
         // set the tooltip value
-        clickScoreDOM.attr('title', 'Study for +' + clickScoreRate +  ' score');
+        clickScoreDOM.attr('title', 'Study for +' + scoreRate +  ' score');
         clickGoldDOM.attr('title', 'Work for +' + clickGoldRate +  ' gold');
 
         // set up the display DOM
@@ -706,11 +703,13 @@
     }
 
     function startGame() {
-        gameHasStarted = true;
-        $('.player-screen').removeClass("grey");
-        // DOM
-        var timeDisplay = document.querySelector('#time');
-        startTimer(levelDuration, timeDisplay);
+        if (!gameHasStarted) {
+            gameHasStarted = true;
+            $('.player-screen').removeClass("grey");
+            // DOM
+            var timeDisplay = document.querySelector('#time');
+            startTimer(levelDuration, timeDisplay);
+        }
     }
 
 
