@@ -532,6 +532,15 @@
     }
 
     function updateStatsDisplay() {
+
+        if (mode == "working") {
+            $('.gold-stat-circle').removeClass("disabled-stat");
+            $('.score-stat-circle').addClass("disabled-stat");
+        } else if (mode == "studying") {
+            $('.gold-stat-circle').addClass("disabled-stat");
+            $('.score-stat-circle').removeClass("disabled-stat");
+        }
+
         document.querySelector('#poor-player-gold').textContent = gold;
         document.querySelector('#poor-player-score').textContent = round(score);
         document.querySelector('#poor-player-rate').textContent = '+' + round(scoreRate);
@@ -599,6 +608,12 @@
             // startTimer() was called
             diff = duration - (((Date.now() - start) / 1000) | 0);
             secondsPassed++;
+			
+			// stop the game
+			if (secondsPassed > levelDuration) {
+				alert("Time's up! You scored " + score + " points, while Rich scored " + rScore + " points.");
+				window.location.reload();
+			}
 
             // does the same job as parseInt truncates the float
             minutes = (diff / 60) | 0;
