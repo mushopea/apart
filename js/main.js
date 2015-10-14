@@ -199,6 +199,10 @@
         // add the score rate
         rate = boostRates[boostNumber];
         addScoreRate(rate);
+
+        // update display
+        $(String('#boost-' + boostNumber)).find(".item-active-boost").html(boostDurations[boostNumber] + ' s left');
+        updateDisplay();
     }
 
     function deductBoost() {
@@ -212,6 +216,7 @@
                 $(upgradeDOM).find(".item-active-boost").html('<br>');
             }
         }
+        updateDisplay();
     }
 
 
@@ -233,7 +238,7 @@
 
     function buyBoost(itemNumber) {
         // if the player has enough gold
-        if (gold >= boostCosts[itemNumber]) {
+        if ((gold >= boostCosts[itemNumber]) && (currentBoostDuration == 0)) {
             // buy the boost
             addBoost(itemNumber);
             deductGold(boostCosts[itemNumber]);
@@ -484,7 +489,7 @@
             } else {
                 // update DOM with the countdown
                 var upgradeDOM = String('#boost-' + currentBoost);
-                $(upgradeDOM).find(".item-active-boost").html(currentBoostDuration + ' s left');
+                $(upgradeDOM).find(".item-active-boost").html((currentBoostDuration - 1) + ' s left');
                 // countdown boost activation
                 currentBoostDuration--;
             }
@@ -517,6 +522,7 @@
     // The following function greys out the items the player
     // cannot afford at the moment.
     function updateItemDisplay() {
+
         for (var i = 0; i < upgradeNames.length; i++) {
             if (gold >= upgradeCosts[i]) {
                 $("#upgrade-" + i).removeClass("unbuyable");
@@ -524,14 +530,20 @@
                 $("#upgrade-" + i).addClass("unbuyable");
             }
         }
-
-        for (var i = 0; i < boostNames.length; i++) {
-            if (gold >= boostCosts[i]) {
-                $("#boost-" + i).removeClass("unbuyable");
-            } else {
+        if (currentBoostDuration == 0) {
+            for (var i = 0; i < boostNames.length; i++) {
+                if ((gold >= boostCosts[i])) {
+                    $("#boost-" + i).removeClass("unbuyable");
+                } else {
+                    $("#boost-" + i).addClass("unbuyable");
+                }
+            }
+        } else {
+            for (var i = 0; i < boostNames.length; i++) {
                 $("#boost-" + i).addClass("unbuyable");
             }
         }
+
     }
 
     function updateStatsDisplay() {
