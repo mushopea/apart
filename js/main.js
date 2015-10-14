@@ -664,7 +664,7 @@
         // upgrades
         for (var i = 0; i < upgradeNames.length; i++) {
             var upgradeNumber = i + 1;
-            html += '<div class="item-cell unbuyable" title="+' + upgradeRates[i] + ' score per second" id="upgrade-' + i + '">';
+            html += '<div class="item-cell unbuyable" title="+' + upgradeRates[i] + ' score per click" id="upgrade-' + i + '">';
             html += '<div class="item-img"><img src="img\/u' + upgradeNumber + '.png"><\/div>';
             html += '<div class="item-name">' + upgradeNames[i] + '<\/div>';
             html += '<div class="item-qty">Qty: ' + upgradeQuantities[i] + '<\/div>';
@@ -674,7 +674,7 @@
         // boosts
         for (var i = 0; i < upgradeNames.length; i++) {
             var boostNumber = i + 1;
-            html += '<div class="item-cell unbuyable" title="+' + boostRates[i] + ' score for ' + boostDurations[i] +  ' seconds" id="boost-' + i + '">';
+            html += '<div class="item-cell unbuyable" title="+' + boostRates[i] + ' score per click for ' + boostDurations[i] +  ' seconds" id="boost-' + i + '">';
             html += '<div class="item-img"><img src="img\/b' + boostNumber + '.png"><\/div>';
             html += '<div class="item-name">' + boostNames[i] + '<\/div>';
             html += '<div class="item-active-boost"><br></div>';
