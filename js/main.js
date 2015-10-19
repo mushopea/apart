@@ -395,18 +395,20 @@
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     function fadeEnvironmentDisplay(workOrStudy) {
         var image = "";
+        var sprite = "";
         if ((workOrStudy == "work") && (mode == "studying")) {
             image = "img/envpoor2.png";
+            sprite = "img/poor2.png";
         } else if ((workOrStudy == "study") && (mode == "working")) {
             image = "img/envpoor.png";
+            sprite = "img/poor.png";
         }
 
-        if (image == "") {
+        if (image == "" || sprite == "") {
             // do nothing
         } else {
-            //$('.poor').fadeTo('fast', 0.3, function () {
-                $('.poor').css('background-image', 'url(' + image + ')');
-           // }).fadeTo('fast', 0.3);
+            $('.poor').css('background-image', 'url(' + image + ')');
+            $('.poor').find('.sprite').html('<img src="' + sprite + '">');
         }
     }
 
