@@ -271,7 +271,7 @@ html, body {
     content: attr(title);
     padding: 5px 15px;
     position: absolute;
-    margin-left: 12px;
+    margin-left: 43px;
     margin-top: -17px;
 }
 
@@ -296,12 +296,11 @@ html, body {
 }
 
 .stats {
-    width: 60%;
     margin: 0 auto;
     padding-top: 10px;
     text-align: center;
     height: 108px;
-    background: rgba(255, 255, 255, 0.4);
+    width: 77%;
 }
 
 .stat-circle {
