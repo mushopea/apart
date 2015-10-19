@@ -43,7 +43,7 @@
     var upgradeCosts = [5, 10, 15, 20, 25];
     var upgradeRates = [1, 3, 5, 7, 10];
 
-    var boostNames = ['Water', 'Milo', 'Coffee', 'Red Bull', 'Chicken Roast'];
+    var boostNames = ['Water', 'Wilo', 'Coffee', 'Black Bull', 'Chicken Tonic'];
     var boostCosts = [1, 3, 5, 7, 10];
     var boostRates = [5, 10, 15, 20, 25];
     var boostDurations = [5, 5, 5, 5, 10];
