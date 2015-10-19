@@ -24,6 +24,8 @@
     var upgradeQuantities = [0, 0, 0, 0, 0]; // change on event
     // mode
     var mode = "studying";
+    // prompts
+    var prompted = [false, false, false, false];
 
     // * * * * * * * * * * * * * * * * * * *
     // RichKid
@@ -429,9 +431,10 @@
 
     function clickGold() {
         if (gameHasStarted) {
-                if (gold == 0) {
+                if ((gold == 0) && (!prompted[2])) {
                     $('#prompt1').hide();
                     $('#prompt2').show();
+                    prompted[2] = true;
                 }
 
                 clickGoldChangeDisplay();
@@ -796,7 +799,10 @@
         if ((!gameHasStarted) && (!Shepherd.activeTour)) {
             gameHasStarted = true;
             $('.player-screen').removeClass("grey");
-            $("#prompt1").show();
+            if (!prompted[1]) {
+                $("#prompt1").show();
+                prompted[1] = true;
+            }
             // DOM
             var timeDisplay = document.querySelector('#time');
             startTimer(levelDuration, timeDisplay);
@@ -821,9 +827,10 @@
             var itemID = String($(this).attr('id'));
             var itemNumber = itemID.charAt(itemID.length-1);
 
-            if (score == 0) {
+            if ((gold > 0) && (!prompted[3]) && (gameHasStarted)) {
                 $('#prompt2').hide();
                 $('#prompt3').show();
+                prompted[3] = true;
             }
 
             if (itemID.charAt(0) == 'b') {
