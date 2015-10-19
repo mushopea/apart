@@ -735,32 +735,20 @@ html, body {
 }
 
 @media screen and (max-width: 1280px){
-    body{
+    html{
+        zoom: 90%;
         -moz-transform: scale(0.9, 0.9);
-        -webkit-transform: scale(0.9, 0.9);
-        -ms-transform: scale(0.9, 0.9);
-        -o-transform: scale(0.9, 0.9);
-        transform: scale(0.9, 0.9);
-        font-size: 13px;
     }
 }
 @media screen and (max-height: 900px){
-    body{
+    html{
+        zoom: 90%;
         -moz-transform: scale(0.9, 0.9);
-        -webkit-transform: scale(0.9, 0.9);
-        -ms-transform: scale(0.9, 0.9);
-        -o-transform: scale(0.9, 0.9);
-        transform: scale(0.9, 0.9);
-        font-size: 13px;
     }
 }
 @media screen and (max-width: 1230px){
-    body {
+    html {
+        zoom: 80%;
         -moz-transform: scale(0.8, 0.8);
-        -webkit-transform: scale(0.8, 0.8);
-        -ms-transform: scale(0.8, 0.8);
-        -o-transform: scale(0.8, 0.8);
-        transform: scale(0.8, 0.8);
-        font-size: 13px;
     }
 }

@@ -66,7 +66,7 @@
         shepherd.addStep('4', {
             title: 'Upgrades',
             text: 'Upgrades to increase your score per click permanently, helping you generate study points at a faster rate!',
-            attachTo: '#upgrade-4 right',
+            attachTo: '#upgrade-2 top',
             buttons: [
                 {
                     text: 'Back',
@@ -81,7 +81,7 @@
         shepherd.addStep('5', {
             title: 'Boosts',
             text: 'Boosts increase your score per click for a temporary period of time. Only one boost can be used at a time.',
-            attachTo: '#boost-0 left',
+            attachTo: '#boost-2 top',
             buttons: [
                 {
                     text: 'Back',
