@@ -167,7 +167,7 @@ html, body {
 }
 
 .sprite img {
-    margin-top: 77px;
+    margin-top: 65px;
 }
 
 .poor {
@@ -194,7 +194,7 @@ html, body {
 
 #clickgold, #clickscore {
     position: absolute;
-    top: 218px;
+    top: 326px;
 }
 
 #clickgold img, #clickscore img {
@@ -260,6 +260,7 @@ html, body {
     padding: 25px;
     font-size: 1.5em;
     font-weight: 700;
+    display: none;
 }
 
 .clickable:hover:before{
