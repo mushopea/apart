@@ -356,16 +356,16 @@
     }
 
     function triggerAnyGoodEvent() {
-        console.log("Triggering a good event");
         var eventNumberToTrigger = Math.floor(Math.random() * goodEvents.length);
         var scoreToAdd = Math.floor(score * goodEvents[eventNumberToTrigger][1]);
-        addScoreFromEvent(scoreToAdd);
-        displayEvent("poorkid", goodEvents[eventNumberToTrigger][0], "+", scoreToAdd, goodEvents[eventNumberToTrigger][2]);
+        if (scoreToAdd > 0) {
+            addScoreFromEvent(scoreToAdd);
+            displayEvent("poorkid", goodEvents[eventNumberToTrigger][0], "+", scoreToAdd, goodEvents[eventNumberToTrigger][2]);
+        }
     }
 
     function triggerAnyBadEvent() {
         if (score > (maxScore / 100)) {
-            console.log("Triggering a bad event");
             var eventNumberToTrigger = Math.floor(Math.random() * badEvents.length);
             var eventType = badEvents[eventNumberToTrigger][1];
             var eventText = badEvents[eventNumberToTrigger][0];
