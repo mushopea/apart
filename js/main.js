@@ -4,6 +4,7 @@
     var raceLineHeight = 530;
     var gameHasStarted = false;
     var secondsPassed = 0;
+    var hasPromptedUserToWork = false;
 
     // * * * * * * * * * * * * * * * * * * *
     // Player
@@ -394,25 +395,31 @@
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     function clickGold() {
         if (gameHasStarted) {
-            mode = "working";
-            // activate work and deactivate study
-            $("#clickgold").removeClass("unclickable");
-            $("#clickscore").addClass("unclickable");
-            $("#status").text(statuses[1]);
+                mode = "working";
+                // activate work and deactivate study
+                $("#clickgold").removeClass("unclickable");
+                $("#clickscore").addClass("unclickable");
+                $("#status").text(statuses[1]);
 
-            addGold(clickGoldRate);
+                addGold(clickGoldRate);
         }
     }
 
     function clickScore() {
         if (gameHasStarted) {
-            mode = "studying";
-            // activate study and deactivate work
-            $("#clickscore").removeClass("unclickable");
-            $("#clickgold").addClass("unclickable");
-            $("#status").text(statuses[0]);
+            if (scoreRate == 0 && !hasPromptedUserToWork) {
+                // inform the user they need to earn gold to buy upgrades
+                hasPromptedUserToWork = true;
+                displayEvent("poorkid", "I need to work to earn gold, in order to buy upgrades and boosts for my score rate.", "", 0, "Can't study :(")
+            } else {
+                mode = "studying";
+                // activate study and deactivate work
+                $("#clickscore").removeClass("unclickable");
+                $("#clickgold").addClass("unclickable");
+                $("#status").text(statuses[0]);
 
-            addScore(scoreRate);
+                addScore(scoreRate);
+            }
         }
     }
 
