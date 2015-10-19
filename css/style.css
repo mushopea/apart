@@ -195,11 +195,11 @@ html, body {
 
 #clickgold, #clickscore {
     position: absolute;
-    top: 326px;
+    top: 285px;
 }
 
 #clickgold img, #clickscore img {
-    width: 110px;
+    width: 160px;
 }
 
 #clickgold {
@@ -291,7 +291,7 @@ html, body {
 .stat-screen {
     position: absolute;
     width: 100%;
-    top: 0;
+    bottom: 0;
     left: 0;
 }
 
@@ -418,7 +418,7 @@ html, body {
     position: absolute;
     width: 100%;
     text-align: center;
-    margin-top: -436px;
+    margin-top: 21px;
 }
 
 .event-container {
