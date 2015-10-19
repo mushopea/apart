@@ -62,6 +62,7 @@ html, body {
     font-size: 2em;
     font-weight: 700;
     color: #6455c2;
+    min-height: 40px;
 }
 
 #time:hover {
@@ -77,6 +78,7 @@ html, body {
     height: 608px;
     position: relative;
     width: 100%;
+    background-image: url('../img/end.png');
 
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -506,6 +508,36 @@ html, body {
 #prompt1, #prompt2, #prompt3 {
     display: none;
     z-index: 9999;
+}
+
+.the-end {
+    display: none;
+    height: 100%;
+    width: 50%;
+    position: relative;
+    float: left;
+    font-size: 3em;
+    padding: 50px;
+}
+
+.poor-end {
+    text-align: left;
+}
+
+.rich-end {
+    text-align: right;
+}
+
+.end-title {
+    font-weight: bold;
+    color: royalblue;
+}
+
+.restart-link {
+    text-transform: none;
+    text-underline: none;
+    font-weight: bold;
+    color: indianred;
 }
 
 /* shepherd */

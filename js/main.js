@@ -1,6 +1,6 @@
 (function() {
     // Game variables
-    var levelDuration = 300;
+    var levelDuration = 5;
     var raceLineHeight = 530;
     var gameHasStarted = false;
     var secondsPassed = 0;
@@ -52,7 +52,10 @@
     var boostDurations = [5, 5, 5, 5, 5];
 
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
-    var scoresForGrades = [350000, 450000, 500000, 550000, 600000, 650000, 700000, 850000, 99999999];
+    var scoresForGrades = [0, 350000, 450000, 500000, 550000, 600000, 650000, 700000, 850000, 99999999];
+
+    var occupations = ['Janitor', 'Secretary', 'Office Worker', 'Supervisor', 'Manager'];
+    var scoreForOccupations = [0, 250000, 500000, 750000, 900000, 9999999999];
 
     var statuses = ["You are studying to improve your score.", "You are working to earn some gold."];
 
@@ -106,6 +109,10 @@
         var percentageOfMaxScore = roundScore/maxScore;
         var newRacePosition = Math.round(raceLineHeight - percentageOfMaxScore*raceLineHeight);
         return newRacePosition;
+    }
+
+    function between(x, min, max) {
+        return x >= min && x < max;
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -685,6 +692,42 @@
 
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // End game
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    function determineGrade(marks) {
+        for (var i = 0; i < scoresForGrades.length-1; i++) {
+            if (between(marks, scoresForGrades[0], scoresForGrades[i+1])) {
+                return grades[i];
+            }
+        }
+    }
+    function determineOccupation(marks) {
+        for (var i = 0; i < scoreForOccupations.length-1; i++) {
+            if (between(marks, scoreForOccupations[0], scoreForOccupations[i+1])) {
+                return occupations[i];
+            }
+        }
+    }
+
+    function showEndGame() {
+        $('.poor').fadeOut("slow");
+        $('.rich').fadeOut("slow");
+        $('.race-line-container').fadeOut("slow");
+        $('#time').fadeOut("slow");
+        $('#items-container').hide();
+
+        var htmlPoor = '<div class="end-title">Final score:</div> ' + score + ' <div class="end-title">Final grade:</div> ' + determineGrade(score) + '<div class="end-title">Occupation:</div> ' + determineOccupation(score) + '<p><a href="." class="restart-link">Restart</a>';
+        var htmlRich = '<div class="end-title">Final score:</div> ' + rScore + ' <div class="end-title">Final grade:</div> ' + determineGrade(rScore) + ' <div class="end-title">Occupation:</div> CEO';
+
+        $('.poor-end').html(htmlPoor);
+        $('.rich-end').html(htmlRich);
+
+        $('.the-end').delay(500).fadeIn("slow");
+
+    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Timer
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -702,8 +745,8 @@
 			
 			// stop the game
 			if (secondsPassed > levelDuration) {
-				alert("Time's up! You scored " + score + " points, while Rich scored " + rScore + " points.");
-				window.location.reload();
+                gameHasStarted = false;
+				showEndGame();
 			}
 
             // does the same job as parseInt truncates the float
@@ -827,6 +870,7 @@
             var itemID = String($(this).attr('id'));
             var itemNumber = itemID.charAt(itemID.length-1);
 
+            // prompt user to study after buying things
             if ((gold > 0) && (!prompted[3]) && (gameHasStarted)) {
                 $('#prompt2').hide();
                 $('#prompt3').show();
