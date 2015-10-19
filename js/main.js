@@ -40,16 +40,16 @@
     // * * * * * * * * * * * * * * * * * * *
 
     var upgradeNames = ['Stress Balloons', 'Stationery', 'Practice Papers', 'Guidebook', 'Tuition'];
-    var upgradeCosts = [5, 10, 15, 20, 25];
-    var upgradeRates = [1, 3, 5, 7, 10];
+    var upgradeCosts = [10, 15, 20, 25, 30];
+    var upgradeRates = [5, 15, 25, 35, 50];
 
     var boostNames = ['Water', 'Wilo', 'Coffee', 'Black Bull', 'Chicken Tonic'];
     var boostCosts = [1, 3, 5, 7, 10];
-    var boostRates = [5, 10, 15, 20, 25];
-    var boostDurations = [5, 5, 5, 5, 10];
+    var boostRates = [2, 7, 12, 17, 25];
+    var boostDurations = [5, 5, 5, 5, 5];
 
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
-    var scoresForGrades = [70000, 90000, 100000, 110000, 120000, 130000, 140000, 170000, 99999999];
+    var scoresForGrades = [350000, 450000, 500000, 550000, 600000, 650000, 700000, 850000, 99999999];
 
     var statuses = ["You are studying to improve your score.", "You are working to earn some gold."];
 
@@ -59,7 +59,7 @@
       ["My brother is away on a camping trip, I can finally concentrate! ", 0.07, "Peace and Quiet"],
       ["Dad is taking an off day today, so I don't have to help him at the store - more time to study! ", 0.05, "No Work Today!"],
       ["My parents finally replaced the spoilt fan - no more studying in the stuffy heat for me!", 0.04, "Beat the Heat"],
-      ["My friend invites me to study at his air-conditioned, super huge room - yay!", 0.25, "Study Buddy"],
+      ["My friend invites me to study at his air-conditioned, super huge room - yay!", 0.05, "Study Buddy"],
       ["My financial aid application got approved - I can work one less job!", 0.02, "Drop the job"],
       ["I play rock-paper-scissors with my siblings to see who'll be doing the chores for the week - I win! Hah!  ", 0.01, "Rock-paper-scissors"]
     ];
@@ -80,12 +80,12 @@
 
     // Maximum Variables
     var maxGold = 900;
-    var maxScore = 200000;
-    var maxScoreRate = 900;
+    var maxScore = 1000000;
+    var maxScoreRate = 90000;
     var maxUpgradePurchases = 99;
 
     // Game Random Event Balancing variables
-    var idealDiff = -15000; // further decrease this to increase difficulty
+    var idealDiff = -25000; // further decrease this to increase difficulty
     var maxDiff = maxScore;
     var goodRange = Math.abs(0 - maxDiff - idealDiff);
     var badRange = Math.abs(maxDiff * 2) - goodRange;
@@ -428,69 +428,78 @@
                 thingsToBuy = [4, 2, 3, 3, 1, 1, 3];
                 break;
             case 15:
-                thingsToBuy = [3, 3, 3, 4, 3, 4];
+                thingsToBuy = [3, 3, 3, 4, 3, 4, 4];
                 break;
             case 25:
-                thingsToBuy = [2, 3, 4, 3, 4];
+                thingsToBuy = [2, 3, 4, 3, 4, 4];
                 break;
             case 35:
-                thingsToBuy = [4, 3, 3, 4, 4];
+                thingsToBuy = [4, 3, 3, 4, 4, 3];
                 break;
             case 45:
-                thingsToBuy = [3, 2, 3, 4, 4];
+                thingsToBuy = [3, 2, 3, 4, 4, 3];
                 break;
             case 55:
-                thingsToBuy = [3, 3, 3, 4, 4];
+                thingsToBuy = [3, 3, 3, 4, 4, 4];
                 break;
             case 65:
-                thingsToBuy = [3, 3, 2, 2, 3];
+                thingsToBuy = [3, 3, 2, 2, 3, 4];
                 break;
             case 75:
-                thingsToBuy = [2, 3, 2, 3, 4];
+                thingsToBuy = [2, 3, 2, 3, 4, 3];
                 break;
             case 85:
-                thingsToBuy = [4, 3, 3, 3, 4];
+                thingsToBuy = [4, 3, 3, 3, 4, 4];
                 break;
             case 95:
-                thingsToBuy = [3, 4, 3, 4, 3];
+                thingsToBuy = [3, 4, 3, 4, 3, 4];
                 break;
             case 105:
-                thingsToBuy = [2, 2, 3, 2, 4];
+                thingsToBuy = [2, 2, 3, 2, 4, 4];
                 break;
             case 115:
-                thingsToBuy = [2, 4, 2, 2, 4];
+                thingsToBuy = [2, 4, 2, 2, 4, 3];
                 break;
             case 125:
-                thingsToBuy = [3, 2, 2, 3, 3];
+                thingsToBuy = [3, 2, 2, 3, 3, 4];
                 break;
             case 135:
-                thingsToBuy = [4, 3, 3, 2, 4];
+                thingsToBuy = [4, 3, 3, 2, 4, 4];
                 break;
             case 145:
-                thingsToBuy = [3, 2, 4, 1, 4];
+                thingsToBuy = [3, 2, 4, 1, 4, 3];
                 break;
             case 155:
-                thingsToBuy = [3, 4, 3, 4, 4];
+                thingsToBuy = [3, 4, 3, 4, 4, 4];
+                break;
+            case 165:
+                thingsToBuy = [3, 2, 2, 4, 3, 4];
                 break;
             case 175:
-                thingsToBuy = [3, 2, 2, 4, 3];
-                break;
-            case 195:
                 thingsToBuy = [2, 2, 2, 2, 3];
                 break;
-            case 215:
+            case 185:
                 thingsToBuy = [3, 3, 2, 1, 4];
                 break;
-            case 235:
+            case 195:
                 thingsToBuy = [4, 3, 3, 2, 4];
                 break;
-            case 255:
+            case 215:
                 thingsToBuy = [4, 3, 3, 4, 4];
                 break;
-            case 275:
+            case 225:
                 thingsToBuy = [4, 4, 4, 4, 4];
                 break;
-            case 295:
+            case 235:
+                thingsToBuy = [4, 4, 4, 4, 4];
+                break;
+            case 235:
+                thingsToBuy = [4, 4, 4, 4, 4];
+                break;
+            case 235:
+                thingsToBuy = [4, 4, 4, 4, 4];
+                break;
+            case 235:
                 thingsToBuy = [4, 4, 4, 4, 4];
                 break;
             default:
