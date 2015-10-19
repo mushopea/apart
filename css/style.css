@@ -180,6 +180,7 @@ html, body {
     width: 50%;
     position: relative;
     float: left;
+    transition: background 0.2s linear;
 }
 
 .rich {

@@ -393,14 +393,43 @@
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Click functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    function fadeEnvironmentDisplay(workOrStudy) {
+        var image = "";
+        if ((workOrStudy == "work") && (mode == "studying")) {
+            image = "img/envpoor2.png";
+        } else if ((workOrStudy == "study") && (mode == "working")) {
+            image = "img/envpoor.png";
+        }
+
+        if (image == "") {
+            // do nothing
+        } else {
+            //$('.poor').fadeTo('fast', 0.3, function () {
+                $('.poor').css('background-image', 'url(' + image + ')');
+           // }).fadeTo('fast', 0.3);
+        }
+    }
+
+    function clickGoldChangeDisplay() {
+        $("#clickgold").removeClass("unclickable");
+        $("#clickscore").addClass("unclickable");
+        $("#status").text(statuses[1]);
+        fadeEnvironmentDisplay("work");
+    }
+
+    function clickScoreChangeDisplay() {
+        // activate study and deactivate work
+        $("#clickscore").removeClass("unclickable");
+        $("#clickgold").addClass("unclickable");
+        $("#status").text(statuses[0]);
+        fadeEnvironmentDisplay("study");
+    }
+
     function clickGold() {
         if (gameHasStarted) {
+                clickGoldChangeDisplay();
                 mode = "working";
                 // activate work and deactivate study
-                $("#clickgold").removeClass("unclickable");
-                $("#clickscore").addClass("unclickable");
-                $("#status").text(statuses[1]);
-
                 addGold(clickGoldRate);
         }
     }
@@ -412,12 +441,8 @@
                 hasPromptedUserToWork = true;
                 displayEvent("poorkid", "I need to work to earn gold, in order to buy upgrades and boosts for my score rate.", "", 0, "Can't study :(")
             } else {
+                clickScoreChangeDisplay();
                 mode = "studying";
-                // activate study and deactivate work
-                $("#clickscore").removeClass("unclickable");
-                $("#clickgold").addClass("unclickable");
-                $("#status").text(statuses[0]);
-
                 addScore(scoreRate);
             }
         }
