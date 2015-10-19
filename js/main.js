@@ -429,6 +429,11 @@
 
     function clickGold() {
         if (gameHasStarted) {
+                if (gold == 0) {
+                    $('#prompt1').hide();
+                    $('#prompt2').show();
+                }
+
                 clickGoldChangeDisplay();
                 mode = "working";
                 // activate work and deactivate study
@@ -438,6 +443,9 @@
 
     function clickScore() {
         if (gameHasStarted) {
+            if (score == 0) {
+                $('#prompt3').hide();
+            }
             if (scoreRate == 0 && !hasPromptedUserToWork) {
                 // inform the user they need to earn gold to buy upgrades
                 hasPromptedUserToWork = true;
@@ -788,6 +796,7 @@
         if ((!gameHasStarted) && (!Shepherd.activeTour)) {
             gameHasStarted = true;
             $('.player-screen').removeClass("grey");
+            $("#prompt1").show();
             // DOM
             var timeDisplay = document.querySelector('#time');
             startTimer(levelDuration, timeDisplay);
@@ -811,6 +820,11 @@
         $('.item-cell').bind('click', function() {
             var itemID = String($(this).attr('id'));
             var itemNumber = itemID.charAt(itemID.length-1);
+
+            if (score == 0) {
+                $('#prompt2').hide();
+                $('#prompt3').show();
+            }
 
             if (itemID.charAt(0) == 'b') {
                 // item is a boost

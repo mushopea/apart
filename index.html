@@ -72,14 +72,17 @@
                     </div>
                 </div>
                 <div class="sprite-container">
-                    <div class="sprite">
-                        <img src="img/poor.png">
+                    <div class="sprite-outer">
+                        <div class="sprite">
+                            <img src="img/poor.png">
+                        </div>
                     </div>
 
                     <div id="clickgold" class="clickable" title="Work for +1 gold">
-                        <img src="img/clickgold.png">
+                        <span id="prompt1" class="hint">Click me! Earn some gold first.</span><img src="img/clickgold.png">
                     </div>
                     <div id="clickscore" class="clickable" title="Study for +1 score">
+                        <span id="prompt3" class="hint">Now you can click here to study.</span>
                         <img src="img/clickscore.png">
                     </div>
                     <div id="status" class="status">You're studying to improve your grades.</div>
@@ -123,8 +126,10 @@
                             <ul class="message-list">Richard's purchases</ul>
                         </div>
                     </div>
-                    <div class="sprite">
-                        <img src="img/rich.png">
+                    <div class="sprite-outer">
+                        <div class="sprite">
+                            <img src="img/rich.png">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,6 +149,8 @@
 
         <!-- upgrades and boost section -->
         <div class="item-screen-title">UPGRADES AND BOOSTS</div>
+        <span id="prompt2" class="hint">Got enough gold? Buy an item.</span>
+
         <div class="item-screen" id="item-screen">
         </div>
     </div>

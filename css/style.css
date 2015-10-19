@@ -167,8 +167,20 @@ html, body {
     margin: 25px;
 }
 
+.sprite-outer {
+    height: 348px;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+    margin-bottom: 112px;
+}
+
+.sprite {
+    position: relative;
+}
+
 .sprite img {
-    margin-top: 65px;
+    bottom: 0px;
 }
 
 .poor {
@@ -475,6 +487,25 @@ html, body {
     position: absolute;
     margin-left: -110px;
     margin-top: -195px;
+}
+
+.hint {
+    position: absolute;
+    background: cornflowerblue;
+    padding: 3px 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+}
+
+#prompt2 {
+    margin-top: 186px;
+    margin-left: -98px;
+}
+
+#prompt1, #prompt2, #prompt3 {
+    display: none;
+    z-index: 9999;
 }
 
 /* shepherd */
