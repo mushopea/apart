@@ -742,7 +742,7 @@
     }
 
     function startGame() {
-        if (!gameHasStarted) {
+        if ((!gameHasStarted) && (!Shepherd.activeTour)) {
             gameHasStarted = true;
             $('.player-screen').removeClass("grey");
             // DOM
