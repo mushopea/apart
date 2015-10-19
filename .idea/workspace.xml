@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fba3298f-4862-4f6d-a5fd-4a7c07be556d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/b1.png" afterPath="$PROJECT_DIR$/img/b1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/b2.png" afterPath="$PROJECT_DIR$/img/b2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/b3.png" afterPath="$PROJECT_DIR$/img/b3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/b4.png" afterPath="$PROJECT_DIR$/img/b4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/b5.png" afterPath="$PROJECT_DIR$/img/b5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/clickgold.png" afterPath="$PROJECT_DIR$/img/clickgold.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/clickscore.png" afterPath="$PROJECT_DIR$/img/clickscore.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/u3.png" afterPath="$PROJECT_DIR$/img/u3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/u4.png" afterPath="$PROJECT_DIR$/img/u4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/u5.png" afterPath="$PROJECT_DIR$/img/u5.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
     </list>
     <ignored path="apart.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,11 +41,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6518847" vertical-offset="3804" max-vertical-offset="18360">
+              <caret line="183" column="7" selection-start-line="183" selection-start-column="7" selection-end-line="183" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35476717" vertical-offset="712" max-vertical-offset="16200">
-              <caret line="45" column="77" selection-start-line="45" selection-start-column="77" selection-end-line="45" selection-end-column="77" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1504" max-vertical-offset="16200">
+              <caret line="78" column="47" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="47" />
               <folding>
                 <element signature="e#159#199#0" expanded="false" />
                 <element signature="e#4626#4679#0" expanded="false" />
@@ -110,8 +120,8 @@
         <option value="$PROJECT_DIR$/js/shepherd.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/tutorial.js" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/css/style.css" />
       </list>
     </option>
   </component>
@@ -1226,14 +1236,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53264606" vertical-offset="17247" max-vertical-offset="18216">
-          <caret line="738" column="18" selection-start-line="738" selection-start-column="18" selection-end-line="738" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="10.285714" vertical-offset="792" max-vertical-offset="3864">
@@ -1244,8 +1246,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35476717" vertical-offset="712" max-vertical-offset="16200">
-          <caret line="45" column="77" selection-start-line="45" selection-start-column="77" selection-end-line="45" selection-end-column="77" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1504" max-vertical-offset="16200">
+          <caret line="78" column="47" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="47" />
           <folding>
             <element signature="e#159#199#0" expanded="false" />
             <element signature="e#4626#4679#0" expanded="false" />
@@ -1290,6 +1292,14 @@
             <element signature="e#12087#12181#0" expanded="false" />
             <element signature="e#12206#12300#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6518847" vertical-offset="3804" max-vertical-offset="18360">
+          <caret line="183" column="7" selection-start-line="183" selection-start-column="7" selection-end-line="183" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>

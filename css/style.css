@@ -171,7 +171,10 @@ html, body {
 }
 
 .poor {
-    background: #F8E1DD;
+    background-color: #F8E1DD;
+    background-image: url('../img/envpoor.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     height: 100%;
     width: 50%;
     position: relative;
@@ -180,6 +183,9 @@ html, body {
 
 .rich {
     background: #c9c0fb;
+    background-image: url('../img/envrich.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     height: 100%;
     width: 50%;
     position: relative;
