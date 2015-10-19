@@ -1,6 +1,6 @@
 (function() {
     // Game variables
-    var levelDuration = 5;
+    var levelDuration = 300;
     var raceLineHeight = 530;
     var gameHasStarted = false;
     var secondsPassed = 0;
