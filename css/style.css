@@ -37,7 +37,7 @@ html, body {
     height: 246px;
     width: 183px;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
     text-align: left;
     padding: 10px;
     word-wrap: break-word;
@@ -45,10 +45,11 @@ html, body {
     position: absolute;
     color: #FFF;
     background: #000;
-    margin-top: 148px;
+    margin-top: 57px;
     margin-left: 397px;
     z-index: 100;
     font-size: 0.9em;
+    border-radius: 9px;
 }
 
 .messages ul {
