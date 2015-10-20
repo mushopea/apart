@@ -674,20 +674,22 @@
     }
 
     function update() {
-        // countdown boost
-        updateBoost();
+        if (gameHasStarted) {
+            // countdown boost
+            updateBoost();
 
-        // trigger random event if any
-        updateRandomEvent();
+            // trigger random event if any
+            updateRandomEvent();
 
-        // do rich kids actions
-        updateRichKidPurchases();
-        updateRichKidStats();
-        updateRichKidDisplay();
+            // do rich kids actions
+            updateRichKidPurchases();
+            updateRichKidStats();
+            updateRichKidDisplay();
 
-        // displays
-        updateDisplay();
-        updateStatsDisplay();
+            // displays
+            updateDisplay();
+            updateStatsDisplay();
+        }
     }
 
 
