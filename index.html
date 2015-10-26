@@ -18,6 +18,7 @@
     <script src="js/tether.js"></script> <!-- tutorial dependency -->
     <script src="js/shepherd.js"></script> <!-- tutorial dependency -->
     <script src="js/tutorial.js"></script> <!-- tutorial -->
+    <script src="js/ion.sound.min.js"></script> <!-- sounds -->
 
     <!-- typekit font -->
     <script src="https://use.typekit.net/kdd3fgt.js"></script>
@@ -178,6 +179,25 @@
 				"img/envpoor2.png", "img/poor2.png"
 			)
 		//--><!]]>
+
+        // Sounds preloading
+        ion.sound({
+            sounds: [
+                {
+                    name: "richbuy"
+                },
+                {
+                    name: "work"
+                },
+                {
+                    name: "bgm",
+                    volume: 0.3
+                }
+            ],
+            volume: 0.9,
+            path: "../sounds/",
+            preload: true
+        });
 	</script>
 </div>
 
