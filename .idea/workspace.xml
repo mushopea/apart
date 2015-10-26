@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fba3298f-4862-4f6d-a5fd-4a7c07be556d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="apart.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,8 +50,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35524797" vertical-offset="14332" max-vertical-offset="20352">
-              <caret line="702" column="23" selection-start-line="702" selection-start-column="23" selection-end-line="702" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.30429596" vertical-offset="18729" max-vertical-offset="20376">
+              <caret line="883" column="52" selection-start-line="883" selection-start-column="52" selection-end-line="883" selection-end-column="52" />
               <folding>
                 <element signature="e#198#238#0" expanded="false" />
                 <element signature="e#4909#4962#0" expanded="false" />
@@ -1211,8 +1212,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35524797" vertical-offset="14332" max-vertical-offset="20352">
-          <caret line="702" column="23" selection-start-line="702" selection-start-column="23" selection-end-line="702" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.30429596" vertical-offset="18729" max-vertical-offset="20376">
+          <caret line="883" column="52" selection-start-line="883" selection-start-column="52" selection-end-line="883" selection-end-column="52" />
           <folding>
             <element signature="e#198#238#0" expanded="false" />
             <element signature="e#4909#4962#0" expanded="false" />

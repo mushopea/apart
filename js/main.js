@@ -886,6 +886,7 @@
                 $("#prompt1").show();
                 prompted[1] = true;
             }
+
             // DOM
             var timeDisplay = document.querySelector('#time');
             startTimer(levelDuration, timeDisplay);
