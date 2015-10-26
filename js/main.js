@@ -327,6 +327,7 @@
                 buyUpgradeForRich(shoppingList[i]);
             }
         }
+        ion.sound.play("richbuy");
     }
 
 
@@ -426,6 +427,7 @@
         $("#clickscore").addClass("unclickable");
         $("#status").text(statuses[1]);
         fadeEnvironmentDisplay("work");
+        ion.sound.play("work");
     }
 
     function clickScoreChangeDisplay() {
@@ -840,6 +842,30 @@
         }
     }
 
+    function initializeSounds() {
+        // Sounds preloading
+        $(document).ready(function() {
+
+            ion.sound({
+                sounds: [
+                    {
+                        name: "richbuy"
+                    },
+                    {
+                        name: "work"
+                    },
+                    {
+                        name: "bgm",
+                        volume: 0.3
+                    }
+                ],
+                volume: 0.9,
+                path: "sounds/",
+                preload: true
+            });
+        });
+    }
+
     function startGame() {
         if ((!gameHasStarted) && (!Shepherd.activeTour)) {
             gameHasStarted = true;
@@ -860,6 +886,7 @@
         // Initialization
         populateUpgradesAndBoosts();
         initializeClickables();
+        initializeSounds();
 
         // Start game when click 'Start'
         $('#time').click(function() {
