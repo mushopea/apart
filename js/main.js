@@ -699,6 +699,10 @@
     // End game
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+    function stopSound() {
+        ion.sound.stop();
+    }
+
     function determineGrade(marks) {
         for (var i = 0; i < scoresForGrades.length-1; i++) {
             if (between(marks, scoresForGrades[0], scoresForGrades[i+1])) {
@@ -715,6 +719,8 @@
     }
 
     function showEndGame() {
+        stopSound();
+
         $('.poor').fadeOut("slow");
         $('.rich').fadeOut("slow");
         $('.race-line-container').fadeOut("slow");
@@ -856,7 +862,13 @@
                     },
                     {
                         name: "bgm",
-                        volume: 0.3
+                        volume: 0.8,
+                        loop: true
+                    },
+                    {
+                        name: "hyperfun",
+                        volume: 0.8,
+                        loop: true
                     }
                 ],
                 volume: 0.9,
@@ -877,6 +889,9 @@
             // DOM
             var timeDisplay = document.querySelector('#time');
             startTimer(levelDuration, timeDisplay);
+
+            // BGM
+            ion.sound.play("hyperfun");
         }
     }
 
