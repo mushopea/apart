@@ -91,7 +91,7 @@
     var maxUpgradePurchases = 99;
 
     // Game Random Event Balancing variables
-    var idealDiff = -25000; // further decrease this to increase difficulty
+    var idealDiff = -50000; // further decrease this to increase difficulty
     var maxDiff = maxScore;
     var goodRange = Math.abs(0 - maxDiff - idealDiff);
     var badRange = Math.abs(maxDiff * 2) - goodRange;
@@ -234,6 +234,14 @@
     // Buy functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+    function increaseUpgradeCost(itemNumber) {
+        upgradeCosts[itemNumber]++;
+
+        // update DOM
+        var upgradeDOM = String('#upgrade-' + itemNumber);
+        $(upgradeDOM).find(".item-cost").html(upgradeCosts[itemNumber]);
+    }
+
     function buyUpgrade(itemNumber) {
         // if the player has enough gold
         if ((gold >= upgradeCosts[itemNumber]) && (upgradeQuantities[itemNumber] < maxUpgradePurchases)) {
@@ -243,6 +251,8 @@
             deductGold(upgradeCosts[itemNumber]);
             // apply the effect of the upgrade (increase the rate)
             addScoreRate(upgradeRates[itemNumber]);
+            // increase the cost
+            increaseUpgradeCost(itemNumber);
         }
     }
 

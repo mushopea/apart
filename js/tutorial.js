@@ -65,7 +65,7 @@
         });
         shepherd.addStep('4', {
             title: 'Upgrades',
-            text: 'Upgrades to increase your score per click permanently, helping you generate study points at a faster rate!',
+            text: 'Upgrades increase your score per click permanently, helping you generate study points at a faster rate! Upgrades get more expensive every time they are bought.',
             attachTo: '#upgrade-2 top',
             buttons: [
                 {
