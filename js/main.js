@@ -787,13 +787,19 @@
         $('#time').fadeOut("slow");
         $('#items-container').hide();
 
-        var htmlPoor = '<div class="end-title">Final score:</div> ' + score + ' <div class="end-title">Final grade:</div> ' + determineGrade(score) + '<div class="end-title">Occupation:</div> ' + determineOccupation(score) + '<p><a href="." class="restart-link">Restart</a>';
+        var htmlPoor = '<div class="end-title">Final score:</div> ' + score + ' <div class="end-title">Final grade:</div> ' + determineGrade(score) + '<div class="end-title">Occupation:</div> ' + determineOccupation(score);
         var htmlRich = '<div class="end-title">Final score:</div> ' + rScore + ' <div class="end-title">Final grade:</div> ' + determineGrade(rScore) + ' <div class="end-title">Occupation:</div> CEO';
+        var poorSprite = "img/sprites/end/" + determineOccupation(score) + ".png";
+        var richSprite = "img/sprites/end/CEO.png";
 
         $('.poor-end').html(htmlPoor);
         $('.rich-end').html(htmlRich);
+        $('#poor-final-sprite').html('<img src="' + poorSprite + '">');
+        $('#rich-final-sprite').html('<img src="' + richSprite + '">');
 
+        $('.final-sprite').delay(500).fadeIn("slow");
         $('.the-end').delay(500).fadeIn("slow");
+        $('.restart-link-container').delay(500).fadeIn("slow");
 
     }
 
