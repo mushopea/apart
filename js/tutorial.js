@@ -2,11 +2,12 @@
  * Created by musho on 19/10/2015.
  */
 (function() {
-    var init, setupShepherd;
+    var init, setupShepherd, startTheGame;
 
     init = function() {
         return setupShepherd();
     };
+
 
     setupShepherd = function() {
         var shepherd;
@@ -16,6 +17,10 @@
                 showCancelLink: true
             }
         });
+        startTheGame = function() {
+            shepherd.complete();
+            $('#time').trigger( "click" );
+        };
         shepherd.addStep('1', {
             title: 'Despairity',
             text: ['Show the world you don’t have to be rich to succeed. Your classmate Richard has it easy, but you know that your hard work will pay off.', '<B>Gain as much study points (score) as you can and advance to the top before Richard does!</B>'],
@@ -104,8 +109,8 @@
                     classes: 'shepherd-button-secondary',
                     action: shepherd.back
                 }, {
-                    text: 'Done',
-                    action: shepherd.next
+                    text: 'START GAME',
+                    action: startTheGame
                 }
             ]
         });
