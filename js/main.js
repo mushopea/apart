@@ -24,6 +24,8 @@
     var upgradeQuantities = [0, 0, 0, 0, 0]; // change on event
     // mode
     var mode = "studying";
+    // stage in life
+    var stageInLife = 0;
     // prompts
     var prompted = [false, false, false, false];
 
@@ -39,7 +41,7 @@
     var rUpgradeQuantities = [0, 0, 0, 0, 0];
 
     // * * * * * * * * * * * * * * * * * * *
-    // Constant Variables
+    // Preset Variables
     // * * * * * * * * * * * * * * * * * * *
 
     var upgradeNames = ['Stress Balloons', 'Stationery', 'Practice Papers', 'Guidebook', 'Tuition'];
@@ -54,8 +56,8 @@
     var grades = ['F9', 'E8', 'D7', 'C6', 'C5', 'B4', 'B3', 'A2', 'A1'];
     var scoresForGrades = [0, 350000, 450000, 500000, 550000, 600000, 650000, 700000, 850000, 99999999];
 
-    var occupations = ['Janitor', 'Secretary', 'Office Worker', 'Supervisor', 'Manager'];
-    var scoreForOccupations = [0, 250000, 500000, 750000, 900000, 9999999999];
+    var occupations = ['Janitor', 'Secretary', 'Office Worker', 'Supervisor', 'Manager', 'Vice CEO'];
+    var scoreForOccupations = [0, 250000, 500000, 750000, 900000, 1000000, 9999999999];
 
     var statuses = ["You are studying to improve your score.", "You are working to earn some gold."];
 
@@ -422,10 +424,10 @@
         var sprite = "";
         if ((workOrStudy == "work") && (mode == "studying")) {
             image = "img/envpoor2.png";
-            sprite = "img/poor2.png";
+            sprite = "img/sprites/poor" + stageInLife + "w.png";
         } else if ((workOrStudy == "study") && (mode == "working")) {
             image = "img/envpoor.png";
-            sprite = "img/poor.png";
+            sprite = "img/sprites/poor" + stageInLife + ".png";
         }
 
         if (image == "" || sprite == "") {
@@ -708,6 +710,50 @@
         }
     }
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Timed Events
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    function changeCharacterSprites(version) {
+        poorSpriteDOM = $("#poor-sprite");
+        richSpriteDOM = $("#rich-sprite");
+
+        switch (version) {
+            case 1:
+                stageInLife = 1;
+                richSpriteDOM.html('<img src="img/sprites/rich2.png">');
+                if (mode == "studying") {
+                    poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + '.png">');
+                } else if (mode == "working") {
+                    poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + 'w.png">');
+                }
+                break;
+            case 2:
+                stageInLife = 2;
+                richSpriteDOM.html('<img src="img/sprites/rich3.png">');
+                if (mode == "studying") {
+                    poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + '.png">');
+                } else if (mode == "working") {
+                    poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + 'w.png">');
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    function updateTimedEvents(diff) {
+        if (diff < 10) { // red if running out of time
+            $('.time-screen').addClass('last-ten-seconds');
+        } else if (diff == 10) { // play clock sound at the last 10th second
+            ion.sound.play("clocl");
+        } else if (diff == 200) {
+            changeCharacterSprites(1);
+        } else if (diff == 100) {
+            changeCharacterSprites(2);
+        }
+    }
+
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // End game
@@ -784,13 +830,7 @@
                 display.textContent = minutes + ":" + seconds;
 
                 update();
-
-                // red if running out of time
-                if (diff < 10) {
-                    $('.time-screen').addClass('last-ten-seconds');
-                } else if (diff == 10) {
-                    ion.sound.play("clocl");
-                }
+                updateTimedEvents(diff);
 
                 if (diff <= 0) {
                     // add one second so that the count down starts at the full duration
