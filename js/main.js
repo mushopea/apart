@@ -195,6 +195,7 @@
     function addUpgrade(upgradeNumber) {
         if (upgradeQuantities[upgradeNumber] < maxUpgradePurchases) {
             upgradeQuantities[upgradeNumber]++;
+            ion.sound.play("coin");
         }
         // update the display of quantity
         var upgradeDOM = String('#upgrade-' + upgradeNumber);
@@ -213,6 +214,9 @@
         // update display
         $(String('#boost-' + boostNumber)).find(".item-active-boost").html(boostDurations[boostNumber] + ' s left');
         updateDisplay();
+
+        // play sound
+        ion.sound.play("water");
     }
 
     function deductBoost() {
@@ -758,40 +762,43 @@
             seconds;
 
         function timer() {
-            // get the number of seconds that have elapsed since
-            // startTimer() was called
-            diff = duration - (((Date.now() - start) / 1000) | 0);
-            secondsPassed++;
-			
-			// stop the game
-			if (secondsPassed > levelDuration) {
-                gameHasStarted = false;
-				showEndGame();
-			}
+            if (gameHasStarted) {
+                // get the number of seconds that have elapsed since
+                // startTimer() was called
+                diff = duration - (((Date.now() - start) / 1000) | 0);
+                secondsPassed++;
 
-            // does the same job as parseInt truncates the float
-            minutes = (diff / 60) | 0;
-            seconds = (diff % 60) | 0;
+                // stop the game
+                if (secondsPassed > levelDuration) {
+                    gameHasStarted = false;
+                    showEndGame();
+                }
 
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
+                // does the same job as parseInt truncates the float
+                minutes = (diff / 60) | 0;
+                seconds = (diff % 60) | 0;
 
-            display.textContent = minutes + ":" + seconds;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            update();
+                display.textContent = minutes + ":" + seconds;
 
-            // red if running out of time
-            if (diff < 10) {
-                $('.time-screen').addClass('last-ten-seconds');
+                update();
+
+                // red if running out of time
+                if (diff < 10) {
+                    $('.time-screen').addClass('last-ten-seconds');
+                } else if (diff == 10) {
+                    ion.sound.play("clocl");
+                }
+
+                if (diff <= 0) {
+                    // add one second so that the count down starts at the full duration
+                    // example 05:00 not 04:59
+                    start = Date.now() + 1000;
+                    $('.time-screen').removeClass('last-ten-seconds');
+                }
             }
-
-            if (diff <= 0) {
-                // add one second so that the count down starts at the full duration
-                // example 05:00 not 04:59
-                start = Date.now() + 1000;
-                $('.time-screen').removeClass('last-ten-seconds');
-            }
-
         };
         // we don't want to wait a full second before the timer starts
         timer();
@@ -879,6 +886,17 @@
                         name: "hyperfun",
                         volume: 0.8,
                         loop: true
+                    },
+                    {
+                        name: "water"
+                    },
+                    {
+                        name: "clocl",
+                        loop: true,
+                        volume: 1.0
+                    },
+                    {
+                        name: "coin"
                     }
                 ],
                 volume: 0.9,
