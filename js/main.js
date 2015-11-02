@@ -760,7 +760,9 @@
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     function stopSound() {
-        ion.sound.stop();
+        ion.sound.destroy("hyperfun");
+        ion.sound.destroy("clocl");
+        ion.sound.play("Gong-sound");
     }
 
     function determineGrade(marks) {
@@ -943,6 +945,10 @@
                     },
                     {
                         name: "coin"
+                    },
+                    {
+                        name: "Gong-sound",
+                        volume: 1.0
                     }
                 ],
                 volume: 0.9,
