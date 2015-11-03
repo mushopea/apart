@@ -427,7 +427,7 @@
             sprite = "img/sprites/poor" + stageInLife + "w.png";
         } else if ((workOrStudy == "study") && (mode == "working")) {
             image = "img/envpoor.png";
-            sprite = "img/sprites/poor" + stageInLife + ".png";
+            sprite = "img/sprites/poor" + stageInLife + ".gif";
         }
 
         if (image == "" || sprite == "") {
@@ -721,18 +721,18 @@
         switch (version) {
             case 1:
                 stageInLife = 1;
-                richSpriteDOM.html('<img src="img/sprites/rich2.png">');
+                richSpriteDOM.html('<img src="img/sprites/rich2.gif">');
                 if (mode == "studying") {
-                    poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + '.png">');
+                    poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + '.gif">');
                 } else if (mode == "working") {
                     poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + 'w.png">');
                 }
                 break;
             case 2:
                 stageInLife = 2;
-                richSpriteDOM.html('<img src="img/sprites/rich3.png">');
+                richSpriteDOM.html('<img src="img/sprites/rich3.gif">');
                 if (mode == "studying") {
-                    poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + '.png">');
+                    poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + '.gif">');
                 } else if (mode == "working") {
                     poorSpriteDOM.html('<img src="img/sprites/poor' + stageInLife + 'w.png">');
                 }
