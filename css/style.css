@@ -842,7 +842,7 @@ html, body {
 
 .first-shepherd.shepherd-element.shepherd-theme-arrows .shepherd-content {
     width: 1000px !important;
-    height: 600px !important;
+    height: 600px;
     padding: 50px;
     max-width: 100% !important;
     max-height: 100% !important;
@@ -854,11 +854,15 @@ html, body {
 
 .shepherd-big-button {
     font-size: 1.3em !important;
-    padding: 20px !important;
+    padding: 20px 30px !important;
 }
 
 .first-shepherd .shepherd-buttons, .first-shepherd .shepherd-text {
     text-align: center !important;
+}
+
+.first-shepherd img {
+    height: 300px !important;
 }
 
 /* PACE PROGRESS BAR */

@@ -28,7 +28,7 @@
         }
         shepherd.addStep('1', {
             title: 'Despairity',
-            text: ['Show the world you don’t have to be rich to succeed. Your classmate Richard has it easy, but you know that your hard work will pay off.', '<B>Gain as much study points (score) as you can and advance to the top before Richard does!</B>'],
+            text: ['<img src="img/intro.jpg"><br>','Show the world you don’t have to be rich to succeed. Your classmate Richard has it easy, but you know that your hard work will pay off.', '<B>Gain as much study points (score) as you can and advance to the top before Richard does!</B>'],
             //attachTo: '#time',
             classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text first-shepherd',
             buttons: [
