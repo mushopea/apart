@@ -959,9 +959,15 @@
     }
 
     function startGame() {
-        if ((!gameHasStarted) && (!Shepherd.activeTour)) {
+        if (Shepherd.activeTour) {
+            Shepherd.activeTour.complete();
+        }
+
+        if ((!gameHasStarted)) {
             gameHasStarted = true;
             $('.player-screen').removeClass("grey");
+            $('.main-screen').removeClass("blur");
+
             if (!prompted[1]) {
                 $("#prompt1").show();
                 prompted[1] = true;
