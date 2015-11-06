@@ -19,22 +19,27 @@
         });
         startTheGame = function() {
             shepherd.complete();
+            $('.main-screen').removeClass("blur");
             $('#time').trigger( "click" );
         };
+        viewTutorial = function() {
+            shepherd.next();
+            $('.main-screen').removeClass("blur");
+        }
         shepherd.addStep('1', {
             title: 'Despairity',
             text: ['Show the world you don’t have to be rich to succeed. Your classmate Richard has it easy, but you know that your hard work will pay off.', '<B>Gain as much study points (score) as you can and advance to the top before Richard does!</B>'],
             //attachTo: '#time',
-            classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+            classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text first-shepherd',
             buttons: [
                 {
-                    text: 'Skip',
-                    classes: 'shepherd-button-secondary',
-                    action: shepherd.cancel
+                    text: 'Start Game',
+                    classes: 'shepherd-button-first shepherd-big-button',
+                    action: startTheGame
                 }, {
-                    text: 'Next',
-                    action: shepherd.next,
-                    classes: 'shepherd-button-example-primary'
+                    text: 'View Tutorial',
+                    action: viewTutorial,
+                    classes: 'shepherd-button-example-primary shepherd-big-button'
                 }
             ]
         });
@@ -110,6 +115,7 @@
                     action: shepherd.back
                 }, {
                     text: 'START GAME',
+                    classes: 'shepherd-button-first',
                     action: startTheGame
                 }
             ]

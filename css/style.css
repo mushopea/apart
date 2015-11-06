@@ -16,6 +16,11 @@ html, body {
     cursor: not-allowed !important;
 }
 
+.blur {
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
+}
+
 /* The ghost, nudged to maintain perfect centering */
 .main-container:before {
     content: '';
@@ -813,6 +818,10 @@ html, body {
     background: #eee;
     color: #888;
 }
+.shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button.shepherd-button-first {
+    background: #da6262;
+    color: #fff;
+}
 .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li:last-child .shepherd-button {
     margin-right: 0;
 }
@@ -829,6 +838,108 @@ html, body {
 .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button {
     background: #55a892;
 }
+
+
+.first-shepherd.shepherd-element.shepherd-theme-arrows .shepherd-content {
+    width: 1000px !important;
+    height: 600px !important;
+    padding: 50px;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.first-shepherd.shepherd-element.shepherd-theme-arrows .shepherd-content header {
+    display: none;
+}
+
+.shepherd-big-button {
+    font-size: 1.3em !important;
+    padding: 20px !important;
+}
+
+.first-shepherd .shepherd-buttons, .first-shepherd .shepherd-text {
+    text-align: center !important;
+}
+
+/* PACE PROGRESS BAR */
+
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: #00a6a6;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 2px;
+}
+
+.pace .pace-progress-inner {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px #00a6a6, 0 0 5px #00a6a6;
+    opacity: 1.0;
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+    -moz-transform: rotate(3deg) translate(0px, -4px);
+    -ms-transform: rotate(3deg) translate(0px, -4px);
+    -o-transform: rotate(3deg) translate(0px, -4px);
+    transform: rotate(3deg) translate(0px, -4px);
+}
+
+.pace .pace-activity {
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    top: 15px;
+    right: 15px;
+    width: 14px;
+    height: 14px;
+    border: solid 2px transparent;
+    border-top-color: #00a6a6;
+    border-left-color: #00a6a6;
+    border-radius: 10px;
+    -webkit-animation: pace-spinner 400ms linear infinite;
+    -moz-animation: pace-spinner 400ms linear infinite;
+    -ms-animation: pace-spinner 400ms linear infinite;
+    -o-animation: pace-spinner 400ms linear infinite;
+    animation: pace-spinner 400ms linear infinite;
+}
+
+@-webkit-keyframes pace-spinner {
+    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-moz-keyframes pace-spinner {
+    0% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-o-keyframes pace-spinner {
+    0% { -o-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-ms-keyframes pace-spinner {
+    0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes pace-spinner {
+    0% { transform: rotate(0deg); transform: rotate(0deg); }
+    100% { transform: rotate(360deg); transform: rotate(360deg); }
+}
+
 
 @media screen and (max-width: 1280px){
     html{
